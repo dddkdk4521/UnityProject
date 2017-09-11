@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class TestCode : MonoBehaviour
 {
+    Animation Anim;
+
+    private void Start()
+    {
+        this.Anim = this.GetComponent<Animation>();
+        this.Anim.Play("Wait");
+    }
+
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.Anim.Play("Attack");
+        }
+        
         Vector3 axis;
         axis.x = JoyStick.Instance.Axis.x;
         axis.y = JoyStick.Instance.Axis.y;

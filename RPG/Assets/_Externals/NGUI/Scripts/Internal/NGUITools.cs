@@ -120,7 +120,11 @@ static public class NGUITools
 
 				if (mListener == null)
 				{
-					Camera cam = Camera.main;
+#if W2
+					var cam = MainCamera.instance;
+#else
+					var cam = Camera.main;
+#endif
 					if (cam == null) cam = GameObject.FindObjectOfType(typeof(Camera)) as Camera;
 					if (cam != null) mListener = cam.gameObject.AddComponent<AudioListener>();
 				}
@@ -238,8 +242,11 @@ static public class NGUITools
 			if (cam && (cam.cullingMask & layerMask) != 0)
 				return cam;
 		}
-
+#if W2
+		cam = MainCamera.instance;
+#else
 		cam = Camera.main;
+#endif
 		if (cam && (cam.cullingMask & layerMask) != 0) return cam;
 
 #if UNITY_4_3 || UNITY_FLASH
@@ -572,6 +579,7 @@ static public class NGUITools
 				if (layer == -1) go.layer = parent.layer;
 				else if (layer > -1 && layer < 32) go.layer = layer;
 			}
+			go.SetActive(true);
 		}
 		return go;
 	}
@@ -2000,6 +2008,9 @@ static public class NGUITools
 #else
 				Profiler.EndSample();
 #endif
+				#if UNITY_EDITOR && W2
+				if (mGameSize.magnitude > 4000f) Debug.LogWarning(mGameSize);
+				#endif
 			}
 			return mGameSize;
 		}

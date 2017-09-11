@@ -105,17 +105,24 @@ public class UIAtlasMaker : EditorWindow
 
 	List<Texture> GetSelectedTextures ()
 	{
-		List<Texture> textures = new List<Texture>();
+		var textures = new List<Texture>();
+		var names = new List<string>();
 
 		if (Selection.objects != null && Selection.objects.Length > 0)
 		{
-			Object[] objects = EditorUtility.CollectDependencies(Selection.objects);
+			var objects = Selection.GetFiltered(typeof(Texture), SelectionMode.DeepAssets);
 
 			foreach (Object o in objects)
 			{
-				Texture tex = o as Texture;
+				var tex = o as Texture;
 				if (tex == null || tex.name == "Font Texture") continue;
-				if (NGUISettings.atlas == null || NGUISettings.atlas.texture != tex) textures.Add(tex);
+				if (names.Contains(tex.name)) continue;
+
+				if (NGUISettings.atlas == null || NGUISettings.atlas.texture != tex)
+				{
+					names.Add(tex.name);
+					textures.Add(tex);
+				}
 			}
 		}
 		return textures;
@@ -850,10 +857,12 @@ public class UIAtlasMaker : EditorWindow
 		//GUILayout.Label("or replace with trimmed pixels", GUILayout.MinWidth(70f));
 		//GUILayout.EndHorizontal();
 
+		#if !UNITY_5_6
 		GUILayout.BeginHorizontal();
 		NGUISettings.unityPacking = EditorGUILayout.Toggle("Unity Packer", NGUISettings.unityPacking, GUILayout.Width(100f));
 		GUILayout.Label("or custom packer", GUILayout.MinWidth(70f));
 		GUILayout.EndHorizontal();
+		#endif
 
 		GUILayout.BeginHorizontal();
 		NGUISettings.trueColorAtlas = EditorGUILayout.Toggle("Truecolor", NGUISettings.trueColorAtlas, GUILayout.Width(100f));
@@ -865,6 +874,7 @@ public class UIAtlasMaker : EditorWindow
 		GUILayout.Label("replace textures with sprites", GUILayout.MinWidth(70f));
 		GUILayout.EndHorizontal();
 
+		#if !UNITY_5_6
 		if (!NGUISettings.unityPacking)
 		{
 			GUILayout.BeginHorizontal();
@@ -872,6 +882,7 @@ public class UIAtlasMaker : EditorWindow
 			GUILayout.Label("if on, forces a square atlas texture", GUILayout.MinWidth(70f));
 			GUILayout.EndHorizontal();
 		}
+		#endif
 
 #if UNITY_IPHONE || UNITY_ANDROID
 		GUILayout.BeginHorizontal();
@@ -984,7 +995,7 @@ public class UIAtlasMaker : EditorWindow
 					GUILayout.Space(-1f);
 					bool highlight = (UIAtlasInspector.instance != null) && (NGUISettings.selectedSprite == iter.Key);
 					GUI.backgroundColor = highlight ? Color.white : new Color(0.8f, 0.8f, 0.8f);
-					GUILayout.BeginHorizontal("AS TextArea", GUILayout.MinHeight(20f));
+					GUILayout.BeginHorizontal("TextArea", GUILayout.MinHeight(20f));
 					GUI.backgroundColor = Color.white;
 					GUILayout.Label(index.ToString(), GUILayout.Width(24f));
 

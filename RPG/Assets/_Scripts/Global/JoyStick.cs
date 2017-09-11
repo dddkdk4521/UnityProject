@@ -46,6 +46,7 @@ public class JoyStick : BaseObject
         InnerRadius = PointerTrans.GetComponent<UIWidget>().width * 0.5f;
     }
 
+    // NGUI
     void OnPress(bool Pressed)
     {
         if (IsKeyboardInput)
@@ -67,6 +68,7 @@ public class JoyStick : BaseObject
         Movement();
     }
 
+    // NGUI
     void OnDrag()
     {
         if(IsPressed)
@@ -105,5 +107,27 @@ public class JoyStick : BaseObject
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Update()
+    {
+        Vector3 movePosition = 
+            new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("vertical"));
+
+        if (movePosition != Vector3.zero)
+        {
+            this.IsKeyboardInput = true;
+            this.IsPressed = true;
+            this.InnerPosition = CenterPosition + movePosition * Radius;
+            Movement();
+        }
+        else
+        {
+            if (IsKeyboardInput == true)
+            {
+                this.IsPressed = false;
+                this.IsKeyboardInput = false;
+            }                
+        }
     }
 }
