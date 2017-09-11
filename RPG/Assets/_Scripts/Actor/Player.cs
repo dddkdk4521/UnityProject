@@ -27,11 +27,11 @@ public class Player : Actor
         if (Stick.IsPressed)
         {
             Vector3 movePosition = transform.position;
-            movePosition += new Vector3(Stick.Axis.x, 0, Stick.Axis.y);
+            //movePosition += new Vector3(Stick.Axis.x, 0, Stick.Axis.y);
+            movePosition += new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-            // 위치 값 강제이동
+            // 위치 값 강제이동x
             // transform.position = movePosition;
-
             Agent.isStopped = false;
             Agent.SetDestination(movePosition);
 

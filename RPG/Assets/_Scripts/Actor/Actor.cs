@@ -15,7 +15,7 @@ public class Actor : BaseObject
     eAIStateType CurrentState;
     
     // Use this for initialization
-	void Start ()
+	void Awake ()
     {
         this.Anim = this.GetComponentInChildren<Animator>();
         if (Anim == null)
@@ -30,7 +30,7 @@ public class Actor : BaseObject
 	// Update is called once per frame
 	protected virtual void Update ()
     {
-            
+                    
     }
 
     public void ChangeAnimation(eAIStateType eAIState)

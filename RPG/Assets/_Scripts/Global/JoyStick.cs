@@ -112,7 +112,7 @@ public class JoyStick : BaseObject
     private void Update()
     {
         Vector3 movePosition = 
-            new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("vertical"));
+            new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (movePosition != Vector3.zero)
         {
