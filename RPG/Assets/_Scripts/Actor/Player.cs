@@ -21,7 +21,7 @@ public class Player : Actor
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ChangeAnimation(eAIStateType.AI_STATE_ATTACK);
+            ChangeState(eAIStateType.AI_STATE_ATTACK);
         }
 
         if (Stick.IsPressed)
@@ -35,11 +35,15 @@ public class Player : Actor
             Agent.isStopped = false;
             Agent.SetDestination(movePosition);
 
-            ChangeAnimation(eAIStateType.AI_STATE_MOVE);
+            ChangeState(eAIStateType.AI_STATE_MOVE);
         }
         else
         {
-            ChangeAnimation(eAIStateType.AI_STATE_IDLE);
+            if ( CurrentState != eAIStateType.AI_STATE_ATTACK)
+            {
+                ChangeState(eAIStateType.AI_STATE_IDLE);
+            }
+
             base.Update();
         }
     }

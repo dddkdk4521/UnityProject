@@ -11,10 +11,9 @@ public class Actor : BaseObject
         set { _IsPlayer = value; }
     }
 
+    protected eAIStateType CurrentState;
     Animator Anim;
-    eAIStateType CurrentState;
     
-    // Use this for initialization
 	void Awake ()
     {
         this.Anim = this.GetComponentInChildren<Animator>();
@@ -24,7 +23,7 @@ public class Actor : BaseObject
             return;
         }
 
-        this.CurrentState = eAIStateType.AI_STATE_IDLE;
+        ChangeState(eAIStateType.AI_STATE_IDLE);
 	}
 	
 	// Update is called once per frame
@@ -33,20 +32,44 @@ public class Actor : BaseObject
                     
     }
 
-    public void ChangeAnimation(eAIStateType eAIState)
+    public void SetAnimation(eAIStateType eAIState)
     {
-        this.CurrentState = eAIState;
-        this.Anim.SetInteger("State", (int)CurrentState);
+        this.Anim.SetInteger("State", (int)eAIState);
     }
 
+    public void ChangeState(eAIStateType state)
+    {
+        if (this.CurrentState == state)
+        {
+            return;
+        }
+
+        switch (state)
+        {
+            case eAIStateType.AI_STATE_NONE:
+                break;
+            case eAIStateType.AI_STATE_IDLE:
+                break;
+            case eAIStateType.AI_STATE_ATTACK:
+                break;
+            case eAIStateType.AI_STATE_MOVE:
+                break;
+            case eAIStateType.AI_STATE_DIE:
+                break;
+            default:
+                break;
+        }
+
+        SetAnimation(this.CurrentState = state);
+    }
 
     public override object GetData(string keyData, params object[] datas)
     {
         return base.GetData(keyData, datas);
     }
 
-    public override object ThrowEvent(string keyData, params object[] datas)
+    public override void ThrowEvent(string keyData, params object[] datas)
     {
-        return base.ThrowEvent(keyData, datas);
+        base.ThrowEvent(keyData, datas);
     }
 }

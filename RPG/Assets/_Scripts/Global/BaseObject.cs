@@ -6,11 +6,11 @@ public class BaseObject : MonoBehaviour
 {
     Dictionary<string, UnityEngine.Component> DicComponent = new Dictionary<string, Component>();
 
-    BaseObject Target = null;
+    BaseObject TargetObject = null;
     public BaseObject TargetComponent
     {
-        get { return Target; }
-        set { Target = value;}
+        get { return TargetObject; }
+        set { TargetObject = value;}
     }
 
     eBaseObjectState _ObjectState = eBaseObjectState.STATE_NORMAL;
@@ -55,9 +55,9 @@ public class BaseObject : MonoBehaviour
         return null;
     }
 
-    virtual public object ThrowEvent(string keyData, params object[] datas)
+    virtual public void ThrowEvent(string keyData, params object[] datas)
     {
-        return null;
+
     }
 
     public Transform GetChild(string strname)

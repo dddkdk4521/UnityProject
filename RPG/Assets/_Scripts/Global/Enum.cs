@@ -13,3 +13,19 @@ public enum eAIStateType
     AI_STATE_MOVE,
     AI_STATE_DIE 
 }
+
+// Enemy 관련
+public enum eRegeneratorType
+{
+    NONE,
+    REGENTIME_EVENT,
+    TRIGGER_EVENT
+}
+
+public enum eEnemyType
+{
+    A_Monster,
+    B_Monster,
+    C_Monster,
+    MAX
+}
