@@ -1994,8 +1994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b26ba5055259c34c9df030b4fd57bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RegenType: 2
-  EnemyType: 0
+  RegenType: 1
+  EnemyType: 1
   MaxObjectNum: 5
   RegenTime: 10
   CurrTime: 3

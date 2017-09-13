@@ -35,9 +35,12 @@ public class Enemy : Actor
         if (other.gameObject.name.Contains("Player"))
         {
             this.Target = other.transform;
+            // Invoke : 예약작업 (이펙트관련), InvokeRepeating()
 
+            /*
             Coroutine c = StartCoroutine(FollowTarget());
             StopCoroutine(c);
+            */
 
             this.Agent.isStopped = false;
             this.Agent.SetDestination(Target.position);
@@ -75,6 +78,7 @@ public class Enemy : Actor
         {
             Agent.isStopped = false;
             Agent.SetDestination(Target.position);
+
             yield return new WaitForSeconds(0.5f);
         }
 

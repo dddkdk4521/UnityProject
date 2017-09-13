@@ -25,12 +25,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void LoadGame()
     {
-        // Player
-        GameObject playerPrefab = Resources.Load("Prefabs/Actor/" + "Player") as GameObject;
-
-        // Create Clone in Scene
-        GameObject go = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        PlayerActor = go.GetComponent<Actor>();
+        PlayerActor = ActorManager.Instance.PlayerLoad();
 
         // Camera Setting
         CameraManager.Instance.CameraInit(PlayerActor);

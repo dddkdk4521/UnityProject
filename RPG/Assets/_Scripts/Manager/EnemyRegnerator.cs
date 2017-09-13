@@ -21,7 +21,8 @@ public class EnemyRegnerator : BaseObject
 
     private void OnEnable()
     {
-        MonsterPrefab = Resources.Load("Prefabs/Actor/" + EnemyType.ToString()) as GameObject;
+        MonsterPrefab = ActorManager.Instance.GetEnemyPrefab(EnemyType);
+            //Resources.Load("Prefabs/Actor/" + EnemyType.ToString()) as GameObject;
         if (MonsterPrefab == null)
         {
             Debug.LogError("몬스터 로드 실패");
@@ -95,9 +96,8 @@ public class EnemyRegnerator : BaseObject
     {
         for (int i = listAttachMonster.Count; i < MaxObjectNum; i++)
         {
-            GameObject go = 
-                Instantiate(MonsterPrefab, SelfTransform.position + GetRandomPos(), Quaternion.identity) as GameObject;
-            Actor actor = go.GetComponent<Actor>();
+            Actor actor = ActorManager.Instance.InstantiateOnce(MonsterPrefab, 
+                                                                SelfTransform.position + GetRandomPos());
             actor.ThrowEvent(ConstValue.EventKey_EnemyInit, this);
 
             listAttachMonster.Add(actor);
@@ -117,4 +117,5 @@ public class EnemyRegnerator : BaseObject
             this.listAttachMonster.Remove(actor);
         }
     }
+
 }

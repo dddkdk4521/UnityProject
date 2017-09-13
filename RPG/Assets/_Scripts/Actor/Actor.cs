@@ -11,6 +11,31 @@ public class Actor : BaseObject
         set { _IsPlayer = value; }
     }
 
+    [SerializeField]
+    eTeamType _TeamType;
+    public eTeamType TeamType
+    {
+        get { return _TeamType; }
+
+    }
+
+    private void Awake()
+    {
+        // ActorManager AddActor
+        ActorManager.Instance.AddActor(this);
+        
+    }
+
+    private void OnDestroy()
+    {
+        // ActorManager RemoveActor
+        if (ActorManager.Instance != null)
+        {
+            ActorManager.Instance.RemoveActor(this);
+        }
+    }
+}
+    /*
     protected eAIStateType CurrentState;
     Animator Anim;
     
@@ -70,6 +95,21 @@ public class Actor : BaseObject
 
     public override void ThrowEvent(string keyData, params object[] datas)
     {
+        switch (keyData)
+        {
+            case ConstValue.EventKey_Hit:
+                {
+                    Destroy(SelfObject);
+                }
+                break;
+            default:
+                {
+                    base.ThrowEvent(keyData, datas);
+                }
+                break;
+        }
+
         base.ThrowEvent(keyData, datas);
     }
 }
+*/

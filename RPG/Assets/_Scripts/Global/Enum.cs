@@ -29,3 +29,9 @@ public enum eEnemyType
     C_Monster,
     MAX
 }
+
+public enum eTeamType
+{
+    TEAM_1,
+    TEAM_2
+}

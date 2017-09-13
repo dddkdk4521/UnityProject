@@ -5,8 +5,12 @@ using UnityEngine.AI;
 
 public class Player : Actor
 {
+    public float AttackRange = 3.0f;
+
     JoyStick Stick;
-    NavMeshAgent Agent;
+    NavMeshAgent Agent; // UnityEngine.AI 포함
+
+    DetectionArea DetectArea;
 
     private void Start()
     {
@@ -14,8 +18,18 @@ public class Player : Actor
 
         this.Stick = JoyStick.Instance;
         this.Agent = this.GetComponent<NavMeshAgent>();
+        this.DetectArea = 
+            SelfObject.GetComponentInChildren<DetectionArea>();
+        if (DetectArea == null)
+        {
+            Debug.Log("Detection Area is null");
+            return;
+        }
+
+        this.DetectArea.Init(this.AttackRange);
     }
 
+    /*
     // Update is called once per frame
     void Update ()
     {
@@ -43,8 +57,35 @@ public class Player : Actor
             {
                 ChangeState(eAIStateType.AI_STATE_IDLE);
             }
+        }
 
-            base.Update();
+        ProcessAttack();
+    }
+
+    void ProcessAttack()
+    {
+        if (CurrentState == eAIStateType.AI_STATE_ATTACK)
+        {
+            return;
+        }
+
+        ChangeState(eAIStateType.AI_STATE_ATTACK);
+
+        if (DetectArea != null)
+        {
+            Actor actor = this.DetectArea.GetActor();
+            if (actor == null)
+            {
+                return;
+            }
+
+            Vector3 dir = actor.SelfTransform.position - SelfTransform.position;
+            dir.Normalize();
+
+            SelfTransform.rotation = Quaternion.LookRotation(dir);
+            actor.SelfTransform.rotation = Quaternion.LookRotation(-dir);
+            actor.ThrowEvent(ConstValue.EventKey_Hit);
         }
     }
+    */
 }

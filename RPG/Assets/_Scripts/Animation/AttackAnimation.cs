@@ -22,7 +22,7 @@ public class AttackAnimation : StateMachineBehaviour
         {
             if (animatorStateInfo.normalizedTime >= 1.0f)
             {
-                this.TargetActor.ChangeState(eAIStateType.AI_STATE_IDLE);
+                //this.TargetActor.ChangeState(eAIStateType.AI_STATE_IDLE);
             }
         }           
     }
