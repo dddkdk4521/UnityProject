@@ -19,11 +19,40 @@ public class Actor : BaseObject
 
     }
 
+    // AI
+    [SerializeField]
+    eAIType _AIType;
+    public eAIType AIType
+    {
+        get { return _AIType; }
+    }
+
+    BaseAI _AI = null;
+    public BaseAI AI
+    {
+        get { return _AI; }
+    }
+
     private void Awake()
     {
         // ActorManager AddActor
         ActorManager.Instance.AddActor(this);
-        
+
+        //switch (AIType)
+        //{
+        //    case eAIType.NormalAI:
+        //        {
+        //            GameObject go = new GameObject(AIType.ToString(), typeof(NormalAI));
+        //            go.transform.SetParent(SelfTransform);
+
+        //            this._AI = go.GetComponent<NormalAI>();
+        //        }
+        //        break;
+        //    default:
+        //        break;
+        //}
+
+        //AI.TargetComponent = this;
     }
 
     private void OnDestroy()
@@ -33,6 +62,17 @@ public class Actor : BaseObject
         {
             ActorManager.Instance.RemoveActor(this);
         }
+    }
+
+    protected virtual void Update()
+    {
+        //AI.Update();
+        //if (AI.END)
+        //{
+        //    Destroy(SelfObject);
+        //}
+
+        
     }
 }
     /*

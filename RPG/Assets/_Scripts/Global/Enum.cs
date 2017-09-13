@@ -35,3 +35,9 @@ public enum eTeamType
     TEAM_1,
     TEAM_2
 }
+
+public enum eAIType
+{
+    NormalAI,
+
+}
