@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class HexCell : MonoBehaviour
-{
+public class HexCell : MonoBehaviour {
+
 	public HexCoordinates coordinates;
+
 	public RectTransform uiRect;
+
 	public HexGridChunk chunk;
 
 	public Color Color {
@@ -18,6 +20,7 @@ public class HexCell : MonoBehaviour
 			Refresh();
 		}
 	}
+
 	public int Elevation {
 		get {
 			return elevation;
@@ -49,6 +52,7 @@ public class HexCell : MonoBehaviour
 			Refresh();
 		}
 	}
+
 	public int WaterLevel {
 		get {
 			return waterLevel;
@@ -62,36 +66,43 @@ public class HexCell : MonoBehaviour
 			Refresh();
 		}
 	}
+
 	public bool IsUnderwater {
 		get {
 			return waterLevel > elevation;
 		}
 	}
+
 	public bool HasIncomingRiver {
 		get {
 			return hasIncomingRiver;
 		}
 	}
+
 	public bool HasOutgoingRiver {
 		get {
 			return hasOutgoingRiver;
 		}
 	}
+
 	public bool HasRiver {
 		get {
 			return hasIncomingRiver || hasOutgoingRiver;
 		}
 	}
+
 	public bool HasRiverBeginOrEnd {
 		get {
 			return hasIncomingRiver != hasOutgoingRiver;
 		}
 	}
+
 	public HexDirection RiverBeginOrEndDirection {
 		get {
 			return hasIncomingRiver ? incomingRiver : outgoingRiver;
 		}
 	}
+
 	public bool HasRoads {
 		get {
 			for (int i = 0; i < roads.Length; i++) {
@@ -102,21 +113,26 @@ public class HexCell : MonoBehaviour
 			return false;
 		}
 	}
+
 	public HexDirection IncomingRiver {
 		get {
 			return incomingRiver;
 		}
 	}
+
 	public HexDirection OutgoingRiver {
 		get {
 			return outgoingRiver;
 		}
 	}
+
 	public Vector3 Position {
 		get {
 			return transform.localPosition;
 		}
 	}
+
+
 	public float StreamBedY {
 		get {
 			return
@@ -124,6 +140,7 @@ public class HexCell : MonoBehaviour
 				HexMetrics.elevationStep;
 		}
 	}
+
 	public float RiverSurfaceY {
 		get {
 			return
@@ -131,6 +148,7 @@ public class HexCell : MonoBehaviour
 				HexMetrics.elevationStep;
 		}
 	}
+
 	public float WaterSurfaceY {
 		get {
 			return
@@ -139,10 +157,48 @@ public class HexCell : MonoBehaviour
 		}
 	}
 
+	public int UrbanLevel {
+		get {
+			return urbanLevel;
+		}
+		set {
+			if (urbanLevel != value) {
+				urbanLevel = value;
+				RefreshSelfOnly();
+			}
+		}
+	}
+
+	public int FarmLevel {
+		get {
+			return farmLevel;
+		}
+		set {
+			if (farmLevel != value) {
+				farmLevel = value;
+				RefreshSelfOnly();
+			}
+		}
+	}
+
+	public int PlantLevel {
+		get {
+			return plantLevel;
+		}
+		set {
+			if (plantLevel != value) {
+				plantLevel = value;
+				RefreshSelfOnly();
+			}
+		}
+	}
+
 	Color color;
 
 	int elevation = int.MinValue;
 	int waterLevel;
+
+	int urbanLevel, farmLevel, plantLevel;
 
 	bool hasIncomingRiver, hasOutgoingRiver;
 	HexDirection incomingRiver, outgoingRiver;
