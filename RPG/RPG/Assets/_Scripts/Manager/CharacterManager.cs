@@ -26,4 +26,32 @@ public class CharacterManager : MonoSingleton<CharacterManager>
             }
         }
     }
+
+    public CharacterTemplateData GetTemplate(string strTemplateKey)
+    {
+        CharacterTemplateData templateData = null;
+        this.DicTemplate.TryGetValue(strTemplateKey, out templateData);
+        if (templateData == null)
+        {
+            Debug.LogError("Key : " + strTemplateKey + " 해당 데이터 미등록");
+            return null;
+        }
+
+        return templateData;
+    }
+
+    public GameCharacter AddCharacter(string strTemplateKey)
+    {
+        CharacterTemplateData templateData = GetTemplate(strTemplateKey);
+        if (templateData == null)
+        {
+            return null;
+        }
+
+        GameCharacter gameCharacter = new GameCharacter();
+        gameCharacter.SetTemplate(templateData);
+
+        return gameCharacter;
+    }
+
 }

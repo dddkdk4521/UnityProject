@@ -10,7 +10,8 @@ public class Enemy : Actor
 
     EnemyRegenerator Generator;
 
-	void Start () {
+	void Start ()
+    {
         Agent = SelfComponent<NavMeshAgent>();
 	}
 
@@ -23,11 +24,11 @@ public class Enemy : Actor
                     Generator = datas[0] as EnemyRegenerator;
                 }
                 break;
-        default:
+            default:
                 {
                     base.ThrowEvent(KeyData, datas);
                 }
-        break;
+                break;
         }
     }
 

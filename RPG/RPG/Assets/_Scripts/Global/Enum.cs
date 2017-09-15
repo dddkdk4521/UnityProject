@@ -49,5 +49,15 @@ public enum eStatusData
     MAX
 }
 
+public enum eSkillTemplateType
+{
+    TARGET_ATTACK,
+    RANGE_ATTACK
+}
 
+public enum eSkillAttackRangeType
+{
+    RANGE_BOX,
+    RANGE_SPHERE
+}
 

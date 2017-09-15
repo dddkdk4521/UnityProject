@@ -109,6 +109,7 @@ public class BaseAI : BaseObject
 
     public void JoyMove(Vector3 position)
     {
+        this.bUpdateAI = false;
         ClearAI();
         SetMove(position);
         ProcessMove();
@@ -191,7 +192,14 @@ public class BaseAI : BaseObject
                     if(nextAI.Targetobject != null)
                     {
                         SelfTransform.forward = (nextAI.Targetobject.SelfTransform.position - SelfTransform.position).normalized;
+                        GameCharacter gc = TargetComponent.GetData(ConstValue.ActorData_Character) as GameCharacter;
+
+                        Debug.Log(TargetComponent.name + "가 "
+                            + nextAI.Targetobject.name + "를 "
+                            + gc.GetCharacterStatus.GetStatusData(eStatusData.ATTACK)
+                            + " 공격력으로 때림.");
                     }
+
                     ProcessAttack();
                 }
                 break;

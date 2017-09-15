@@ -16,7 +16,7 @@ public class AttackAnimation : StateMachineBehaviour
         if(TargetActor != null && TargetActor.AI.CurrentAIState == eAIStateType.AI_STATE_ATTACK)
         {
             TargetActor.AI.IsAttack = true;
-            bIsAttack = true;
+            bIsAttack = false;
         }
     }
 
@@ -32,11 +32,9 @@ public class AttackAnimation : StateMachineBehaviour
 
         if(bIsAttack == false && animatorStateInfo.normalizedTime >= 0.5f)
         {
+            TargetActor.RunSkill();
             bIsAttack = true;
-
-            // Actor Attack();
+            // Actor Attack()
         }
-
-   
     }
 }

@@ -1059,6 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TeamType: 0
+  TemplateKey: CHARACTER_1
   _AIType: 0
 --- !u!136 &136025773789722940
 CapsuleCollider:

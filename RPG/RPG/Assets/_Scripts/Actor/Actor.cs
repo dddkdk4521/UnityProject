@@ -13,10 +13,21 @@ public class Actor : BaseObject
 
     [SerializeField]
     eTeamType _TeamType;
-
     public eTeamType TeamType
     {
         get { return _TeamType; }
+    }
+
+    [SerializeField]
+    string TemplateKey = string.Empty;
+
+    GameCharacter _selfCharacter = null;
+    public GameCharacter SelfCharacter
+    {
+        get
+        {
+            return _selfCharacter;
+        }
     }
 
     // AI
@@ -55,6 +66,11 @@ public class Actor : BaseObject
 
         AI.TargetComponent = this;
 
+        GameCharacter character = CharacterManager.Instance.AddCharacter(TemplateKey);
+        character.TargetComponent = this;
+        _selfCharacter = character;
+
+        ActorManager.Instance.AddActor(this);
     }
 
     public virtual void Update()
@@ -66,6 +82,15 @@ public class Actor : BaseObject
         }
     }
 
+    private void OnDestroy()
+    {
+        // ActorManager RemoveActor
+        if (ActorManager.Instance != null)
+        {
+            ActorManager.Instance.RemoveActor(this);
+        }     
+    }
+
     public override object GetData(string KeyData, params object[] datas)
     {
         switch (KeyData)
@@ -74,11 +99,18 @@ public class Actor : BaseObject
                 {
                     return TeamType;
                 }
+            case ConstValue.ActorData_Character:
+                {
+                    return SelfCharacter
+                        ;
+                }
+            case ConstValue.ActorData_GetTarget:
+                {
+                    return HitTarget;
+                }
             default:
                 return base.GetData(KeyData, datas);
         }
-
-        return base.GetData(KeyData, datas);
     }
 
     public override void ThrowEvent(string KeyData, params object[] datas)
@@ -90,6 +122,11 @@ public class Actor : BaseObject
                     HitTarget = datas[0] as BaseObject;
                 }
                 break;
+            case ConstValue.EventKey_Hit:
+                {
+                    AI.ANIMATOR.SetInteger("Hit", 1);
+                }
+                break; 
             default:
                 base.ThrowEvent(KeyData, datas);
                 break;
@@ -97,15 +134,21 @@ public class Actor : BaseObject
         
     }
 
-    private void OnDestroy()
+    public void RunSkill()
     {
-        // ActorManager RemoveActor
-        if (ActorManager.Instance != null)
-        {
-            ActorManager.Instance.RemoveActor(this);
-        }     
+        //GameCharacter gc = TargetComponent.GetData(ConstValue.ActorData_Character) as GameCharacter;
+        Debug.Log(this.gameObject.name + "가 "
+            + HitTarget.name + "를 "
+            + SelfCharacter.GetCharacterStatus.GetStatusData(eStatusData.ATTACK)                
+            + " 공격력으로 때림.");
+
+        HitTarget.ThrowEvent(ConstValue.EventKey_Hit);
     }
 
+    public double GetStatusData(eStatusData statusData)
+    {
+        return SelfCharacter.GetCharacterStatus.GetStatusData(statusData);
+    }
     //   Animator Anim;
 
     //   protected eAIStateType CurrentState;
