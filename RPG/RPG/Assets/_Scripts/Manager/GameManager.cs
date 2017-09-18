@@ -7,6 +7,15 @@ public class GameManager : MonoSingleton<GameManager>
     bool IsInit = false;
     public Actor PlayerActor;
 
+    bool IsGameOver = true;
+    public bool GAME_OVER
+    {
+        get
+        {
+            return IsGameOver;
+        }
+    }
+
     void Start()
     {
         GameInit();
@@ -28,5 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
         
         // Camera Setting
         CameraManager.Instance.CameraInit(PlayerActor);
+
+        IsGameOver = false;
     }
 }

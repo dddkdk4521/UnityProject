@@ -69,8 +69,6 @@ public class Actor : BaseObject
         GameCharacter character = CharacterManager.Instance.AddCharacter(TemplateKey);
         character.TargetComponent = this;
         _selfCharacter = character;
-
-        ActorManager.Instance.AddActor(this);
     }
 
     public virtual void Update()
@@ -82,7 +80,7 @@ public class Actor : BaseObject
         }
     }
 
-    private void OnDestroy()
+    public virtual void OnDestroy()
     {
         // ActorManager RemoveActor
         if (ActorManager.Instance != null)
@@ -101,12 +99,16 @@ public class Actor : BaseObject
                 }
             case ConstValue.ActorData_Character:
                 {
-                    return SelfCharacter
-                        ;
+                    return SelfCharacter;
                 }
             case ConstValue.ActorData_GetTarget:
                 {
                     return HitTarget;
+                }
+            case ConstValue.ActorData_SkillData:   
+                {
+                    int index = (int)datas[0];
+                    return SelfCharacter.GetSkillDataByIndex(index);
                 }
             default:
                 return base.GetData(KeyData, datas);
@@ -124,9 +126,34 @@ public class Actor : BaseObject
                 break;
             case ConstValue.EventKey_Hit:
                 {
+                    if (ObjectState == eBaseObjectState.STATE_DIE)
+                    {
+                        return;
+                    }
+
+                    GameCharacter casterCharacter = datas[0] as GameCharacter;
+                    SkillTemplate skilltemplate = datas[1] as SkillTemplate;
+
+                    casterCharacter.GetCharacterStatus.AddStatusData("SKILL", skilltemplate.STATUS_DATA);
+
+                    double attackDamage = casterCharacter.GetCharacterStatus.GetStatusData(eStatusData.ATTACK);
+                    SelfCharacter.IncreaseCurentHP(-attackDamage);
+
+                    casterCharacter.GetCharacterStatus.RemoveStatusData("SKILL");
+
+                    Debug.Log(SelfObject.name + "가 데미지 " + attackDamage + "피해를 입었습니다. ");
                     AI.ANIMATOR.SetInteger("Hit", 1);
                 }
-                break; 
+                break;
+            case ConstValue.EventKey_SelectSkill:
+                {
+                    int index = (int)datas[0];
+                    if (SelfCharacter.EquipSkillByIndex(index) == false)
+                    {
+                        Debug.LogError(this.gameObject + " 의" + "Skill Index : " + index + "스킬 구동 실패");
+                    }
+                }
+                break;
             default:
                 base.ThrowEvent(KeyData, datas);
                 break;
@@ -136,13 +163,25 @@ public class Actor : BaseObject
 
     public void RunSkill()
     {
-        //GameCharacter gc = TargetComponent.GetData(ConstValue.ActorData_Character) as GameCharacter;
-        Debug.Log(this.gameObject.name + "가 "
-            + HitTarget.name + "를 "
-            + SelfCharacter.GetCharacterStatus.GetStatusData(eStatusData.ATTACK)                
-            + " 공격력으로 때림.");
+        SkillData selectSkill = SelfCharacter.SELECT_SKILL;
+        if (selectSkill == null)
+        {
+            return;
+        }
 
-        HitTarget.ThrowEvent(ConstValue.EventKey_Hit);
+        for (int i = 0; i < selectSkill.SKILL_LIST.Count; i++)
+        {
+            SkillManager.Instance.RunSkill(this, selectSkill.SKILL_LIST[i]);
+        }
+        SelfCharacter.SELECT_SKILL = null;
+        
+        //GameCharacter gc = TargetComponent.GetData(ConstValue.ActorData_Character) as GameCharacter;
+        //Debug.Log(this.gameObject.name + "가 "
+        //    + HitTarget.name + "를 "
+        //    + SelfCharacter.GetCharacterStatus.GetStatusData(eStatusData.ATTACK)                
+        //    + " 공격력으로 때림.");
+
+        //HitTarget.ThrowEvent(ConstValue.EventKey_Hit);
     }
 
     public double GetStatusData(eStatusData statusData)

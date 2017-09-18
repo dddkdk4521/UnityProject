@@ -13,6 +13,7 @@ public class Player : Actor
         Stick = JoyStick.Instance;
     }
 
+    // Player JoyStick
     public override void Update()
     {
         if (Stick.IsPressed)

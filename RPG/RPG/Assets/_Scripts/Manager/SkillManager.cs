@@ -66,6 +66,76 @@ public class SkillManager : MonoSingleton<SkillManager>
         }
     }
 
+    BaseSkill CreateSkill(BaseObject owner, SkillTemplate skillTemplate)
+    {
+        BaseSkill makeSkill = null;
+
+        GameObject skillObject = new GameObject();
+        Transform firePos = null;
+
+        switch (skillTemplate.SKILL_TYPE)
+        {
+            case eSkillTemplateType.TARGET_ATTACK:
+                {
+                    makeSkill = skillObject.AddComponent<MeleeSkill>();
+                    firePos = owner.SelfTransform;
+                }
+                break;
+            case eSkillTemplateType.RANGE_ATTACK:
+                {
+                    makeSkill = skillObject.AddComponent<RangeSkill>();
+                    firePos = owner.GetChild("FirePos");
+                    if (firePos == null)
+                    {
+                        Debug.Log("FirePos 가 없습니다.");
+                        firePos = owner.SelfTransform;
+                    }
+                }
+                break;
+        }
+
+        skillObject.name = owner.name + " " + skillTemplate.SKILL_TYPE.ToString();
+
+        if (makeSkill != null)
+        {
+            makeSkill.transform.position = firePos.position;
+            makeSkill.transform.rotation = firePos.rotation;
+
+            makeSkill.OWNER = owner;
+            makeSkill.SKILL_TEMPLATE = skillTemplate;
+            makeSkill.TARGET = owner.GetData(ConstValue.ActorData_GetTarget) as BaseObject;
+
+            makeSkill.InitSkill();
+        }
+
+        switch (skillTemplate.RANGE_TYPE)
+        {
+            case eSkillAttackRangeType.RANGE_BOX:
+                {
+                    BoxCollider collider = skillObject.AddComponent<BoxCollider>();
+                    {
+                        collider.size = new Vector3(skillTemplate.RANGE_DATA_1, 1, skillTemplate.RANGE_DATA_2);
+                        collider.center = new Vector3(0, 0.5f, skillTemplate.RANGE_DATA_2 * 0.5f);
+                        collider.isTrigger = true;
+                    }
+                }
+                break;
+            case eSkillAttackRangeType.RANGE_SPHERE:
+                {
+                    SphereCollider collider = skillObject.AddComponent<SphereCollider>();
+                    {
+                        collider.radius = skillTemplate.RANGE_DATA_1;
+                        collider.isTrigger = true;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        return makeSkill;
+    }
+
     public SkillData GetSkillData(string strkey)
     {
         SkillData skillData = null;
@@ -110,10 +180,44 @@ public class SkillManager : MonoSingleton<SkillManager>
         listSkill.Add(runSkill);
     }
 
-    BaseSkill CreateSkill(BaseObject owner, SkillTemplate skillTemplate)
+    public void Update()
     {
-        BaseSkill makeSkill = null;
+        if (GameManager.Instance.GAME_OVER)
+        {
+            return;
+        }
 
-        return makeSkill;
+        foreach (KeyValuePair<BaseObject, List<BaseSkill>> pair in DicUseSkill)
+        {
+            List<BaseSkill> list = pair.Value;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                BaseSkill updateSkill = list[i];
+                updateSkill.UpdateSkill();
+
+                if (updateSkill.END)
+                {
+                    list.Remove(updateSkill);
+                    Destroy(updateSkill.gameObject);
+                }
+            }
+        }
     }
+
+    public void ClearSkill()
+    {
+        foreach (KeyValuePair<BaseObject, List<BaseSkill>> pair in DicUseSkill)
+        {
+            List<BaseSkill> list = pair.Value;
+            for (int i = 0; i < list.Count; i++)
+            {
+                BaseSkill updatSkill = list[i];
+                list.Remove(updatSkill);
+                Destroy(updatSkill.gameObject);
+            }
+        }
+        DicSkillData.Clear();
+    }
+
 }

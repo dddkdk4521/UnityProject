@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,6 +34,13 @@ public class GameCharacter
         }
     }
 
+    public SkillData SELECT_SKILL
+    {
+        get;
+        set;
+    }
+    List<SkillData> ListSkill = new List<SkillData>();
+
     public void IncreaseCurentHP(double valueData)
     {
         this.CurrentHP += valueData;
@@ -60,11 +68,52 @@ public class GameCharacter
         this.CharacterStatus.AddStatusData(ConstValue.CharacterStatusDataKey, TemplateData.STATUS);
         this.CurrentHP = CharacterStatus.GetStatusData(eStatusData.MAX_HP);
 
-        //Status
+        // Skill Setting
+        for (int i = 0; i < TemplateData.LIST_SKILL.Count; i++)
+        {
+            SkillData data = SkillManager.Instance.GetSkillData(TemplateData.LIST_SKILL[i]);
+            if (data == null)
+            {
+                Debug.LogError(TemplateData.LIST_SKILL[i] + " 스킬 키를 찾을수 없습니다.");
+                return;
+            }
+            else
+            {
+                AddSkill(data);
+            }
+        }
 
 
     }
 
+    public bool EquipSkillByIndex(int index)
+    {
+        if (ListSkill.Count > index)
+        {
+            SELECT_SKILL = ListSkill[index];
+        }
+        else
+        {
+            return false;
+        }
 
+        return true;
+    }
 
+    public void AddSkill(SkillData data)
+    {
+        ListSkill.Add(data);
+    }
+
+    public SkillData GetSkillDataByIndex(int index)
+    {
+        if (ListSkill.Count > index)
+        {
+            return ListSkill[index];
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

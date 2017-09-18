@@ -129,6 +129,8 @@ public class BaseAI : BaseObject
 
     protected virtual void ProcessAttack()
     {
+        TargetComponent.ThrowEvent(ConstValue.EventKey_SelectSkill, 0);
+
         _CurrentAIState = eAIStateType.AI_STATE_ATTACK;
         ChangeAnimation();
     }
@@ -215,7 +217,12 @@ public class BaseAI : BaseObject
 
     public void UpdateAI()
     {
-        if(bUpdateAI == true)
+        if (END == true)
+        {
+            return;
+        }
+
+        if (bUpdateAI == true)
         {
             return;
         }

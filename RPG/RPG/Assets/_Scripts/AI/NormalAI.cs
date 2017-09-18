@@ -17,6 +17,12 @@ public class NormalAI : BaseAI
 
             //float distance = Vector3.Distance(targetObject.SelfTransform.position, SelfTransform.position);
 
+            SkillData skillData = TargetComponent.GetData(ConstValue.ActorData_SkillData , 0) as SkillData;
+            if (skillData != null)
+            {
+                attackRange = skillData.RANGE;
+            }
+
             if (distance < attackRange)
             {
                 Stop();
@@ -43,6 +49,14 @@ public class NormalAI : BaseAI
             float attackRange = 1f;
 
             //float distance = Vector3.Distance(targetObject.SelfTransform.position, SelfTransform.position);
+
+            SkillData skillData = TargetComponent.GetData(ConstValue.ActorData_SkillData, 0) as SkillData;
+            if (skillData != null)
+            {
+                attackRange = skillData.RANGE;
+            }
+
+            //Debug.Log(attackRange);
 
             if (distance < attackRange)
             {

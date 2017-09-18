@@ -31,47 +31,41 @@ public class Enemy : Actor
                 break;
         }
     }
-
-    private void OnDisable()
+   
+    public override void OnDestroy()
     {
         if(Generator != null)
         {
             Generator.RemoveActor(this);
         }
+
+        base.OnDestroy();
     }
 
-    private void OnDestroy()
-    {
-        if(Generator != null)
-        {
-            Generator.RemoveActor(this);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.gameObject.name.Contains("Player"))
+    //    {
+    //        Target = other.transform;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.name.Contains("Player"))
-        {
-            Target = other.transform;
+    //        //InvokeRepeating("FollowTarget", 0.5f, 0.5f);
+    //        //Coroutine c = StartCoroutine(FollowTarget());
+    //        //StopCoroutine(c);
 
-            //InvokeRepeating("FollowTarget", 0.5f, 0.5f);
-            //Coroutine c = StartCoroutine(FollowTarget());
-            //StopCoroutine(c);
+    //        StartCoroutine("FollowTarget");
+    //    }
+    //}
 
-            StartCoroutine("FollowTarget");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.name.Contains("Player"))
-        {
-            Target = null;
-            Agent.isStopped = true;
-            StopCoroutine("FollowTarget");
-        }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if(other.gameObject.name.Contains("Player"))
+    //    {
+    //        Target = null;
+    //        Agent.isStopped = true;
+    //        StopCoroutine("FollowTarget");
+    //    }
         
-    }
+    //}
 
     //float StackTime = 0;
 
@@ -100,15 +94,15 @@ public class Enemy : Actor
     //    }
     //}
 
-    IEnumerator FollowTarget()
-    {
-        while(Target != null)
-        {
-            Agent.isStopped = false;
-            Agent.SetDestination(Target.position);
-            yield return new WaitForSeconds(0.5f);
-        }
+    //IEnumerator FollowTarget()
+    //{
+    //    while(Target != null)
+    //    {
+    //        Agent.isStopped = false;
+    //        Agent.SetDestination(Target.position);
+    //        yield return new WaitForSeconds(0.5f);
+    //    }
 
-        yield return null;
-    }
+    //    yield return null;
+    //}
 }
