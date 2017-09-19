@@ -61,3 +61,21 @@ public enum eSkillAttackRangeType
     RANGE_SPHERE
 }
 
+public enum eSceneType
+{
+    Scene_None,
+    Scene_Logo,
+    Scene_Lobby,
+    Scene_Game
+}
+
+public enum eUIType
+{
+    Pf_UI_Logo,
+    Pf_UI_Loading,
+    Pf_UI_Lobby,
+    Pf_UI_Inventory,
+    Pf_UI_Popup,
+    Pf_UI_Stage,
+    Pf_UI_Gacha,
+}

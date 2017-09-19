@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HexGridChunk : MonoBehaviour
-{
+public class HexGridChunk : MonoBehaviour {
+
 	public HexMesh terrain, rivers, roads, water, waterShore, estuaries;
 
 	public HexFeatureManager features;
@@ -62,17 +62,11 @@ public class HexGridChunk : MonoBehaviour
 		for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++) {
 			Triangulate(d, cell);
 		}
-
-        // Avoiding Water
-		if (!cell.IsUnderwater)
-        {
-			if (!cell.HasRiver && !cell.HasRoads)
-            {
+		if (!cell.IsUnderwater) {
+			if (!cell.HasRiver && !cell.HasRoads) {
 				features.AddFeature(cell, cell.Position);
 			}
-
-            if (cell.IsSpecial)
-            {
+			if (cell.IsSpecial) {
 				features.AddSpecialFeature(cell, cell.Position);
 			}
 		}

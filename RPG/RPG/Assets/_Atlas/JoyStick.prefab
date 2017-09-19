@@ -53,9 +53,269 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: dfd423c865f9ad0489f7c16de53f0c0f, type: 2}
   mSprites:
+  - name: blue
+    x: 728
+    y: 187
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: blue 1
+    x: 785
+    y: 464
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: blue_pressed
+    x: 834
+    y: 464
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: blue_pressed 1
+    x: 814
+    y: 304
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: brown
+    x: 826
+    y: 206
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: brown_inlay
+    x: 287
+    y: 226
+    width: 44
+    height: 44
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: brown_pressed
+    x: 844
+    y: 366
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: green
+    x: 873
+    y: 415
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: green 1
+    x: 752
+    y: 40
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: green_pressed
+    x: 752
+    y: 89
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: green_pressed 1
+    x: 752
+    y: 138
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grey
+    x: 703
+    y: 8
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grey 1
+    x: 883
+    y: 464
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grey_inlay
+    x: 893
+    y: 370
+    width: 44
+    height: 44
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grey_pressed
+    x: 814
+    y: 255
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grey_pressed 1
+    x: 777
+    y: 206
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: red
+    x: 795
+    y: 353
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: red 1
+    x: 765
+    y: 304
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: red_pressed
+    x: 824
+    y: 415
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: red_pressed 1
+    x: 703
+    y: 106
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: shadedLight00
-    x: 484
-    y: 27
+    x: 403
+    y: 432
     width: 80
     height: 80
     borderLeft: 0
@@ -93,8 +353,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight03
-    x: 258
-    y: 147
+    x: 646
+    y: 436
     width: 61
     height: 76
     borderLeft: 0
@@ -119,8 +379,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight05
-    x: 565
-    y: 402
+    x: 708
+    y: 451
     width: 76
     height: 61
     borderLeft: 0
@@ -132,8 +392,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight06
-    x: 642
-    y: 402
+    x: 501
+    y: 83
     width: 75
     height: 61
     borderLeft: 0
@@ -146,7 +406,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: shadedLight07
     x: 0
-    y: 30
+    y: 191
     width: 160
     height: 160
     borderLeft: 0
@@ -158,7 +418,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight08
-    x: 161
+    x: 0
     y: 352
     width: 160
     height: 160
@@ -171,7 +431,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight09
-    x: 0
+    x: 161
     y: 352
     width: 160
     height: 160
@@ -184,8 +444,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight10
-    x: 258
-    y: 47
+    x: 501
+    y: 145
     width: 61
     height: 75
     borderLeft: 0
@@ -198,7 +458,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: shadedLight11
     x: 0
-    y: 191
+    y: 30
     width: 160
     height: 160
     borderLeft: 0
@@ -210,8 +470,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight12
-    x: 898
-    y: 464
+    x: 612
+    y: 253
     width: 50
     height: 48
     borderLeft: 0
@@ -223,8 +483,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight13
-    x: 565
-    y: 108
+    x: 368
+    y: 302
     width: 50
     height: 48
     borderLeft: 0
@@ -236,8 +496,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight14
-    x: 565
-    y: 59
+    x: 258
+    y: 13
     width: 50
     height: 48
     borderLeft: 0
@@ -249,8 +509,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight15
-    x: 565
-    y: 10
+    x: 501
+    y: 34
     width: 50
     height: 48
     borderLeft: 0
@@ -262,8 +522,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight16
-    x: 616
-    y: 353
+    x: 614
+    y: 204
     width: 50
     height: 48
     borderLeft: 0
@@ -275,8 +535,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight17
-    x: 616
-    y: 304
+    x: 663
+    y: 253
     width: 50
     height: 48
     borderLeft: 0
@@ -288,8 +548,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight18
-    x: 718
-    y: 415
+    x: 552
+    y: 34
     width: 50
     height: 48
     borderLeft: 0
@@ -301,8 +561,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight19
-    x: 769
-    y: 415
+    x: 577
+    y: 123
     width: 50
     height: 48
     borderLeft: 0
@@ -314,8 +574,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight20
-    x: 565
-    y: 157
+    x: 563
+    y: 172
     width: 50
     height: 48
     borderLeft: 0
@@ -327,8 +587,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight21
-    x: 820
-    y: 415
+    x: 665
+    y: 204
     width: 50
     height: 48
     borderLeft: 0
@@ -340,8 +600,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight22
-    x: 871
-    y: 415
+    x: 773
+    y: 402
     width: 50
     height: 48
     borderLeft: 0
@@ -353,111 +613,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight23
-    x: 973
-    y: 415
-    width: 50
-    height: 48
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight24
-    x: 322
-    y: 27
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight25
-    x: 403
-    y: 432
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight26
-    x: 403
-    y: 351
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight27
-    x: 403
-    y: 270
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight28
-    x: 403
-    y: 189
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight29
-    x: 403
-    y: 108
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight30
-    x: 949
-    y: 464
-    width: 50
-    height: 48
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight31
-    x: 565
+    x: 744
     y: 353
     width: 50
     height: 48
@@ -469,9 +625,113 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: shadedLight24
+    x: 368
+    y: 351
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight25
+    x: 339
+    y: 28
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight26
+    x: 339
+    y: 109
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight27
+    x: 339
+    y: 190
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight28
+    x: 287
+    y: 271
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight29
+    x: 258
+    y: 143
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight30
+    x: 714
+    y: 285
+    width: 50
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight31
+    x: 628
+    y: 155
+    width: 50
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: shadedLight32
-    x: 922
-    y: 415
+    x: 722
+    y: 402
     width: 50
     height: 48
     borderLeft: 0
@@ -483,8 +743,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight33
-    x: 565
-    y: 304
+    x: 693
+    y: 334
     width: 50
     height: 48
     borderLeft: 0
@@ -496,8 +756,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight34
-    x: 565
-    y: 255
+    x: 603
+    y: 25
     width: 50
     height: 48
     borderLeft: 0
@@ -509,8 +769,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight35
-    x: 565
-    y: 206
+    x: 603
+    y: 74
     width: 50
     height: 48
     borderLeft: 0
@@ -523,7 +783,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: shadedLight36
     x: 322
-    y: 351
+    y: 432
     width: 80
     height: 80
     borderLeft: 0
@@ -535,8 +795,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight37
-    x: 484
-    y: 270
+    x: 258
+    y: 62
     width: 80
     height: 80
     borderLeft: 0
@@ -548,111 +808,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight38
-    x: 322
-    y: 270
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight39
-    x: 322
-    y: 189
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight40
-    x: 322
-    y: 108
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight41
-    x: 403
-    y: 27
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight42
-    x: 565
-    y: 464
-    width: 110
-    height: 48
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight43
-    x: 787
-    y: 464
-    width: 110
-    height: 48
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight44
-    x: 676
-    y: 464
-    width: 110
-    height: 48
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight45
-    x: 484
-    y: 432
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: shadedLight46
-    x: 484
+    x: 530
     y: 351
     width: 80
     height: 80
@@ -664,8 +820,99 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: shadedLight47
+  - name: shadedLight39
+    x: 565
+    y: 432
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight40
     x: 484
+    y: 432
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight41
+    x: 449
+    y: 351
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight42
+    x: 611
+    y: 383
+    width: 110
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight43
+    x: 501
+    y: 221
+    width: 110
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight44
+    x: 582
+    y: 302
+    width: 110
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight45
+    x: 420
+    y: 270
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: shadedLight46
+    x: 420
     y: 189
     width: 80
     height: 80
@@ -677,9 +924,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: shadedLight47
+    x: 501
+    y: 270
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: shadedLight48
-    x: 484
-    y: 108
+    x: 420
+    y: 27
     width: 80
     height: 80
     borderLeft: 0
@@ -691,10 +951,140 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shadedLight49
-    x: 322
-    y: 432
+    x: 420
+    y: 108
     width: 80
     height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: tan
+    x: 679
+    y: 155
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: tan_inlay
+    x: 322
+    y: 387
+    width: 44
+    height: 44
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: tan_pressed
+    x: 654
+    y: 106
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: white
+    x: 654
+    y: 8
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: white_inlay
+    x: 863
+    y: 321
+    width: 44
+    height: 44
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: white_pressed
+    x: 765
+    y: 255
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow
+    x: 654
+    y: 57
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow 1
+    x: 716
+    y: 236
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_pressed
+    x: 703
+    y: 57
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_pressed 1
+    x: 801
+    y: 157
+    width: 48
+    height: 48
     borderLeft: 0
     borderRight: 0
     borderTop: 0
