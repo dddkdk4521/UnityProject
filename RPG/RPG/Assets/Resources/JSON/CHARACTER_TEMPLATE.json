@@ -10,7 +10,7 @@
 		},
 		"CHARACTER_2": {
 			"MAX_HP": 500,
-			"ATTACK": 1,
+			"ATTACK": 10,
 			"DEFFENCE": 10,
 			"SKILL": [
 				"RANGE_1"
@@ -25,7 +25,7 @@
 			]
 		},
 		"ENEMY_2": {
-			"MAX_HP": 2000,
+			"MAX_HP": 200,
 			"ATTACK": 10,
 			"DEFFENCE": 5,
 			"SKILL": [

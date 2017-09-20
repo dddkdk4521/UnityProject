@@ -30,7 +30,7 @@ public class MeleeSkill : BaseSkill
 
         GameObject colObject = other.gameObject;
         BaseObject actorObject = colObject.GetComponent<BaseObject>();
-        if (actorObject != null && actorObject != TARGET)
+        if (actorObject == null && actorObject != TARGET)
         {
             return;
         }

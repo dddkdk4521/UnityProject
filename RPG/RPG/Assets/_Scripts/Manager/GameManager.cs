@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    bool IsInit = false;
     public Actor PlayerActor;
 
+    bool IsInit = false;
     bool IsGameOver = true;
     public bool GAME_OVER
     {
@@ -16,18 +16,22 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    void Start()
-    {
-        GameInit();
-        LoadGame();
-    }
+    //void Start()
+    //{
+    //    GameInit();
+    //    LoadGame();
+    //}
 
     public void GameInit()
     {
-        if (IsInit == true)
+        if (this.IsInit == true)
+        {
             return;
+        }
 
-        IsInit = true;
+        
+
+        this.IsInit = true;
     }
 
     public void LoadGame()
@@ -38,6 +42,22 @@ public class GameManager : MonoSingleton<GameManager>
         // Camera Setting
         CameraManager.Instance.CameraInit(PlayerActor);
 
-        IsGameOver = false;
+        this.IsGameOver = false;
+    }
+
+    public void SetGameOver()
+    {
+        this.IsGameOver = true;
+        Time.timeScale = 0.1f;
+        Debug.Log("GameOver");
+
+        Invoke("GoLobby", 0.5f);
+    }
+
+    void GoLobby()
+    {
+        Time.timeScale = 1f;
+
+        Scene_Manager.Instance.LoadScene(eSceneType.Scene_Lobby);
     }
 }
