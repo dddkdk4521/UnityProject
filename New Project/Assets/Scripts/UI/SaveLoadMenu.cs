@@ -3,13 +3,16 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 
-public class SaveLoadMenu : MonoBehaviour
-{
+public class SaveLoadMenu : MonoBehaviour {
+
 	public Text menuLabel, actionButtonLabel;
+
 	public InputField nameInput;
+
 	public RectTransform listContent;
 
-    public SaveLoadItem itemPrefab;
+	public SaveLoadItem itemPrefab;
+
 	public HexGrid hexGrid;
 
 	bool saveMode;
@@ -64,9 +67,7 @@ public class SaveLoadMenu : MonoBehaviour
 		FillList();
 	}
 
-    // List Refresh
-	void FillList ()
-    {
+	void FillList () {
 		for (int i = 0; i < listContent.childCount; i++) {
 			Destroy(listContent.GetChild(i).gameObject);
 		}
@@ -81,8 +82,7 @@ public class SaveLoadMenu : MonoBehaviour
 		}
 	}
 
-	string GetSelectedPath ()
-    {
+	string GetSelectedPath () {
 		string mapName = nameInput.text;
 		if (mapName.Length == 0) {
 			return null;
@@ -95,7 +95,7 @@ public class SaveLoadMenu : MonoBehaviour
 			BinaryWriter writer =
 			new BinaryWriter(File.Open(path, FileMode.Create))
 		) {
-			writer.Write(1);
+			writer.Write(2);
 			hexGrid.Save(writer);
 		}
 	}
@@ -105,18 +105,15 @@ public class SaveLoadMenu : MonoBehaviour
 			Debug.LogError("File does not exist " + path);
 			return;
 		}
-        using (BinaryReader reader = new BinaryReader(File.OpenRead(path)))
-        {
-            int fileHeader = reader.ReadInt32();
-            if (fileHeader <= 1)
-            {
-                hexGrid.Load(reader, fileHeader);
-                HexMapCamera.ValidatePosition();
-            }
-            else
-            {
-                Debug.LogWarning("Unknown map format " + fileHeader);
-            }
-        }
+		using (BinaryReader reader = new BinaryReader(File.OpenRead(path))) {
+			int header = reader.ReadInt32();
+			if (header <= 2) {
+				hexGrid.Load(reader, header);
+				HexMapCamera.ValidatePosition();
+			}
+			else {
+				Debug.LogWarning("Unknown map format " + header);
+			}
+		}
 	}
 }

@@ -44,7 +44,6 @@ public class Actor : BaseObject
         get { return _AI; }
     }
 
-
     [SerializeField]
     bool bEnableBoard = true;
 

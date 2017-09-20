@@ -6,6 +6,8 @@ public class HexMapEditor : MonoBehaviour {
 
 	public HexGrid hexGrid;
 
+	public Material terrainMaterial;
+
 	int activeElevation;
 	int activeWaterLevel;
 
@@ -98,27 +100,67 @@ public class HexMapEditor : MonoBehaviour {
 		walledMode = (OptionalToggle)mode;
 	}
 
-	public void ShowUI (bool visible) {
-		hexGrid.ShowUI(visible);
+	public void SetEditMode (bool toggle) {
+		enabled = toggle;
+	}
+
+	public void ShowGrid (bool visible) {
+		if (visible) {
+			terrainMaterial.EnableKeyword("GRID_ON");
+		}
+		else {
+			terrainMaterial.DisableKeyword("GRID_ON");
+		}
+	}
+
+	void Awake () {
+		terrainMaterial.DisableKeyword("GRID_ON");
+		SetEditMode(false);
 	}
 
 	void Update () {
-		if (
-			Input.GetMouseButton(0) &&
-			!EventSystem.current.IsPointerOverGameObject()
-		) {
-			HandleInput();
+		if (!EventSystem.current.IsPointerOverGameObject()) {
+			if (Input.GetMouseButton(0)) {
+				HandleInput();
+				return;
+			}
+			if (Input.GetKeyDown(KeyCode.U)) {
+				if (Input.GetKey(KeyCode.LeftShift)) {
+					DestroyUnit();
+				}
+				else {
+					CreateUnit();
+				}
+				return;
+			}
 		}
-		else {
-			previousCell = null;
+		previousCell = null;
+	}
+
+	HexCell GetCellUnderCursor () {
+		return
+			hexGrid.GetCell(Camera.main.ScreenPointToRay(Input.mousePosition));
+	}
+
+	void CreateUnit () {
+		HexCell cell = GetCellUnderCursor();
+		if (cell && !cell.Unit) {
+			hexGrid.AddUnit(
+				Instantiate(HexUnit.unitPrefab), cell, Random.Range(0f, 360f)
+			);
+		}
+	}
+
+	void DestroyUnit () {
+		HexCell cell = GetCellUnderCursor();
+		if (cell && cell.Unit) {
+			hexGrid.RemoveUnit(cell.Unit);
 		}
 	}
 
 	void HandleInput () {
-		Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast(inputRay, out hit)) {
-			HexCell currentCell = hexGrid.GetCell(hit.point);
+		HexCell currentCell = GetCellUnderCursor();
+		if (currentCell) {
 			if (previousCell && previousCell != currentCell) {
 				ValidateDrag(currentCell);
 			}
