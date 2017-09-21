@@ -4,25 +4,18 @@ using UnityEngine;
 
 public static class ConstValue
 {
-    // StatusData 
-    public const string SetData_Damage = "BOARD_DAMAGE";
-    public const string SetData_HP     = "BOARD_HP";
-
     // StatusData Key
     public const string CharacterStatusDataKey = "CHARACTER_TEMPLATE_STATUS";
         
     // Path Key
     public const string CharacterTemplatePath = "JSON/CHARACTER_TEMPLATE";
-    public const string CharacterTemplateKey  = "CHARACTER_TEMPLATE";
+    public const string CharacterTemplateKey = "CHARACTER_TEMPLATE";
 
     public const string SkillTemplatePath = "JSON/SKILL_TEMPLATE";
     public const string SkillTemplateKey = "SKILL_TEMPLATE";
 
     public const string SkillDataPath = "JSON/SKILL_DATA";
-    public const string SkillDataKey  = "SKILL_DATA";
-
-    public const string UI_PATH_HP     = "Prefabs/UI/HP_Board";
-    public const string UI_PATH_DAMAGE = "Prefabs/UI/Damage_Board";
+    public const string SkillDataKey = "SKILL_DATA";
 
     // ThrowEvent
     public const string EventKey_EnemyInit = "E_INIT";

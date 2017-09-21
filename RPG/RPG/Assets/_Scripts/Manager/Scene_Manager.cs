@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoSingleton<Scene_Manager>
@@ -102,14 +103,8 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
             case eSceneType.Scene_Logo:
                 break;
             case eSceneType.Scene_Lobby:
-                {
-                    GameManager.Instance.GameInit();
-                }
                 break;
             case eSceneType.Scene_Game:
-                {
-                    GameManager.Instance.LoadGame();
-                }
                 break;
             default:
                 break;
@@ -129,7 +124,6 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
             case eSceneType.Scene_Lobby:
                 break;
             case eSceneType.Scene_Game:
-                SkillManager.Instance.ClearSkill();
                 break;
             default:
                 break;

@@ -44,10 +44,6 @@ public class Actor : BaseObject
         get { return _AI; }
     }
 
-
-    [SerializeField]
-    bool bEnableBoard = true;
-
     // 공격대상
     BaseObject HitTarget;
 
@@ -73,12 +69,6 @@ public class Actor : BaseObject
         GameCharacter character = CharacterManager.Instance.AddCharacter(TemplateKey);
         character.TargetComponent = this;
         _selfCharacter = character;
-
-        if (bEnableBoard)
-        {
-            BaseBoard board = BoardManager.Instance.AddBoard(this, eBoardType.BOARD_HP);
-            board.SetData(ConstValue.SetData_HP, GetStatusData(eStatusData.MAX_HP), SelfCharacter.CURRENT_HP);
-        }
     }
 
     public virtual void Update()
@@ -90,29 +80,8 @@ public class Actor : BaseObject
         }
     }
 
-    private void OnEnable()
-    {
-        if (BoardManager.Instance != null)
-        {
-            BoardManager.Instance.ShowBoard(this);
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (BoardManager.Instance != null)
-        {
-            BoardManager.Instance.ShowBoard(this, false);
-        }
-    }
-
     public virtual void OnDestroy()
     {
-        if (BoardManager.Instance != null)
-        {
-            BoardManager.Instance.ClearBoard(this);
-        }
-        
         // ActorManager RemoveActor
         if (ActorManager.Instance != null)
         {
@@ -173,20 +142,6 @@ public class Actor : BaseObject
                     casterCharacter.GetCharacterStatus.RemoveStatusData("SKILL");
 
                     Debug.Log(SelfObject.name + "가 데미지 " + attackDamage + "피해를 입었습니다. ");
-
-                    // DamageBoard
-                    BaseBoard board = BoardManager.Instance.AddBoard(this, eBoardType.BOARD_DAMAGE);
-                    if (board != null)
-                    {
-                        board.SetData(ConstValue.SetData_Damage, attackDamage);
-                    }
-
-                    board = BoardManager.Instance.GetBoadData(this, eBoardType.BOARD_HP);
-                    if (board != null)
-                    {
-                        board.SetData(ConstValue.SetData_HP, GetStatusData(eStatusData.MAX_HP), SelfCharacter.CURRENT_HP);
-                    }
-
                     AI.ANIMATOR.SetInteger("Hit", 1);
                 }
                 break;
@@ -310,4 +265,5 @@ public class Actor : BaseObject
     //       }
 
     //   }
+
 }

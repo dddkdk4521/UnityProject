@@ -16,21 +16,10 @@ public class Player : Actor
     // Player JoyStick
     public override void Update()
     {
-        if (GameManager.Instance.GAME_OVER == false)
-        {
-            if (this.ObjectState == eBaseObjectState.STATE_DIE)
-            {
-                GameManager.Instance.SetGameOver();
-            }
-        }
-        else
-        {
-            return;
-        }
-
         if (Stick.IsPressed)
         {
             Vector3 movePosition = transform.position;
+
             movePosition += new Vector3(Stick.Axis.x, 0, Stick.Axis.y);
 
             AI.JoyMove(movePosition);

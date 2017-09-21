@@ -79,10 +79,3 @@ public enum eUIType
     Pf_UI_Stage,
     Pf_UI_Gacha,
 }
-
-public enum eBoardType
-{
-    BOARD_NONE,
-    BOARD_HP,
-    BOARD_DAMAGE
-}
