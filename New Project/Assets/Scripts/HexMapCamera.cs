@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class HexMapCamera : MonoBehaviour
-{
+public class HexMapCamera : MonoBehaviour {
+
 	public float stickMinZoom, stickMaxZoom;
 
 	public float swivelMinZoom, swivelMaxZoom;
@@ -31,9 +31,12 @@ public class HexMapCamera : MonoBehaviour
 	}
 
 	void Awake () {
-		instance = this;
 		swivel = transform.GetChild(0);
 		stick = swivel.GetChild(0);
+	}
+
+	void OnEnable () {
+		instance = this;
 	}
 
 	void Update () {
@@ -89,8 +92,7 @@ public class HexMapCamera : MonoBehaviour
 		transform.localPosition = ClampPosition(position);
 	}
 
-	Vector3 ClampPosition (Vector3 position)
-    {
+	Vector3 ClampPosition (Vector3 position) {
 		float xMax = (grid.cellCountX - 0.5f) * (2f * HexMetrics.innerRadius);
 		position.x = Mathf.Clamp(position.x, 0f, xMax);
 

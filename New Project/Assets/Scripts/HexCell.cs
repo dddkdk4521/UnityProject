@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 
 public class HexCell : MonoBehaviour {
@@ -9,11 +10,7 @@ public class HexCell : MonoBehaviour {
 
 	public HexGridChunk chunk;
 
-	public Color Color {
-		get {
-			return HexMetrics.colors[terrainTypeIndex];
-		}
-	}
+	public int Index { get; set; }
 
 	public int Elevation {
 		get {
@@ -215,10 +212,43 @@ public class HexCell : MonoBehaviour {
 		set {
 			if (terrainTypeIndex != value) {
 				terrainTypeIndex = value;
-				Refresh();
+				ShaderData.RefreshTerrain(this);
 			}
 		}
 	}
+
+	public bool IsVisible {
+		get {
+			return visibility > 0;
+		}
+	}
+
+	public int Distance {
+		get {
+			return distance;
+		}
+		set {
+			distance = value;
+		}
+	}
+
+	public HexUnit Unit { get; set; }
+
+	public HexCell PathFrom { get; set; }
+
+	public int SearchHeuristic { get; set; }
+
+	public int SearchPriority {
+		get {
+			return distance + SearchHeuristic;
+		}
+	}
+
+	public int SearchPhase { get; set; }
+
+	public HexCell NextWithSamePriority { get; set; }
+
+	public HexCellShaderData ShaderData { get; set; }
 
 	int terrainTypeIndex;
 
@@ -228,6 +258,10 @@ public class HexCell : MonoBehaviour {
 	int urbanLevel, farmLevel, plantLevel;
 
 	int specialIndex;
+
+	int distance;
+
+	int visibility;
 
 	bool walled;
 
@@ -239,6 +273,20 @@ public class HexCell : MonoBehaviour {
 
 	[SerializeField]
 	bool[] roads;
+
+	public void IncreaseVisibility () {
+		visibility += 1;
+		if (visibility == 1) {
+			ShaderData.RefreshVisibility(this);
+		}
+	}
+
+	public void DecreaseVisibility () {
+		visibility -= 1;
+		if (visibility == 0) {
+			ShaderData.RefreshVisibility(this);
+		}
+	}
 
 	public HexCell GetNeighbor (HexDirection direction) {
 		return neighbors[(int)direction];
@@ -399,11 +447,17 @@ public class HexCell : MonoBehaviour {
 					neighbor.chunk.Refresh();
 				}
 			}
+			if (Unit) {
+				Unit.ValidateLocation();
+			}
 		}
 	}
 
 	void RefreshSelfOnly () {
 		chunk.Refresh();
+		if (Unit) {
+			Unit.ValidateLocation();
+		}
 	}
 
 	public void Save (BinaryWriter writer) {
@@ -441,6 +495,7 @@ public class HexCell : MonoBehaviour {
 
 	public void Load (BinaryReader reader) {
 		terrainTypeIndex = reader.ReadByte();
+		ShaderData.RefreshTerrain(this);
 		elevation = reader.ReadByte();
 		RefreshPosition();
 		waterLevel = reader.ReadByte();
@@ -472,5 +527,21 @@ public class HexCell : MonoBehaviour {
 		for (int i = 0; i < roads.Length; i++) {
 			roads[i] = (roadFlags & (1 << i)) != 0;
 		}
+	}
+
+	public void SetLabel (string text) {
+		UnityEngine.UI.Text label = uiRect.GetComponent<Text>();
+		label.text = text;
+	}
+
+	public void DisableHighlight () {
+		Image highlight = uiRect.GetChild(0).GetComponent<Image>();
+		highlight.enabled = false;
+	}
+
+	public void EnableHighlight (Color color) {
+		Image highlight = uiRect.GetChild(0).GetComponent<Image>();
+		highlight.color = color;
+		highlight.enabled = true;
 	}
 }

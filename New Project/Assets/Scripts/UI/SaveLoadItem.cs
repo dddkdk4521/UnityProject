@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveLoadItem : MonoBehaviour
-{
+public class SaveLoadItem : MonoBehaviour {
+
 	public SaveLoadMenu menu;
 
 	public string MapName {
