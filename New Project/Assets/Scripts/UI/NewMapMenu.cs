@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class NewMapMenu : MonoBehaviour {
-
+public class NewMapMenu : MonoBehaviour
+{
 	public HexGrid hexGrid;
 
 	public void Open () {
