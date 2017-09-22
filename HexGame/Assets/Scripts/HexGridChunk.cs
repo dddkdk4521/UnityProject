@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HexGridChunk : MonoBehaviour {
+public class HexGridChunk : MonoBehaviour
+{
 
 	public HexMesh terrain, rivers, roads, water, waterShore, estuaries;
 

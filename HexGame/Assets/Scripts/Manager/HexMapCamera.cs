@@ -5,25 +5,19 @@
 /// </summary>
 public class HexMapCamera : MonoBehaviour
 {
-
     public float stickMinZoom, stickMaxZoom;
-
     public float swivelMinZoom, swivelMaxZoom;
-
     public float moveSpeedMinZoom, moveSpeedMaxZoom;
-
     public float rotationSpeed;
-
-    Transform swivel, stick;
 
     public HexGrid grid;
 
-    float zoom = 1f;
+    Transform swivel, stick;
 
+    float zoom = 1f;
     float rotationAngle;
 
     static HexMapCamera instance;
-
     public static bool Locked
     {
         set

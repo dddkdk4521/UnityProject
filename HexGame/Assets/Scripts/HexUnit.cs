@@ -67,6 +67,24 @@ public class HexUnit : MonoBehaviour
         StartCoroutine(TravelPath());
     }
 
+	public void Die ()
+    {
+		if (this.location)
+        {
+			Grid.DecreaseVisibility(this.location, VISION_RANGE);
+		}
+
+        this.location.Unit = null;
+		Destroy(gameObject);
+	}
+
+	public void Save (BinaryWriter writer)
+    {
+		this.location.coordinates.Save(writer);
+
+        writer.Write(orientation);
+	}
+
     private void InitPath(List<HexCell> path)
     {
         this.location.Unit = null;
@@ -163,24 +181,7 @@ public class HexUnit : MonoBehaviour
 		this.orientation = transform.localRotation.eulerAngles.y;
 	}
 
-	public void Die ()
-    {
-		if (this.location)
-        {
-			Grid.DecreaseVisibility(this.location, VISION_RANGE);
-		}
-
-        this.location.Unit = null;
-		Destroy(gameObject);
-	}
-
-	public void Save (BinaryWriter writer)
-    {
-		this.location.coordinates.Save(writer);
-
-        writer.Write(orientation);
-	}
-
+    // TODO : UnitManager로 이동
 	public static void Load (BinaryReader reader, HexGrid grid)
     {
 		HexCoordinates coordinates = HexCoordinates.Load(reader);

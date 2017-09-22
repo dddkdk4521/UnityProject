@@ -7383,7 +7383,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1642458567}
-        m_MethodName: Action
+        m_MethodName: SaveOrLoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14122,7 +14122,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2142000451}
-        m_MethodName: ShowGrid
+        m_MethodName: SetShowGrid
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

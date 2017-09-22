@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class HexMesh : MonoBehaviour {
-
+public class HexMesh : MonoBehaviour
+{
 	public bool useCollider, useCellData, useUVCoordinates, useUV2Coordinates;
 
 	[NonSerialized] List<Vector3> vertices, cellIndices;
