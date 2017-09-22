@@ -1,0 +1,37 @@
+Working directory: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\
+
+Loading: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\CHARACTER_TEMPLATE.xlsx
+Parsing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\CHARACTER_TEMPLATE.xlsx.$$$\Sheet1.csv
+Closing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\CHARACTER_TEMPLATE.xlsx
+------------------------------------------------------------------------------
+[CHARACTER_TEMPLATE.xlsx(Sheet1): ROW 1]
+Found object mark: '#CHARACTER_TEMPLATE{{}}'
+Parsing Object Object Table...
+Using key index: 1
+
+Loading: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\SKILL_DATA.xlsx
+Parsing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\SKILL_DATA.xlsx.$$$\Sheet1.csv
+Closing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\SKILL_DATA.xlsx
+------------------------------------------------------------------------------
+[SKILL_DATA.xlsx(Sheet1): ROW 1]
+Found object mark: '#SKILL_DATA{{}}'
+Parsing Object Object Table...
+Using key index: 1
+
+Loading: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\SKILL_TEMPLATE.xlsx
+Parsing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\SKILL_TEMPLATE.xlsx.$$$\Sheet1.csv
+Closing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\SKILL_TEMPLATE.xlsx
+------------------------------------------------------------------------------
+[SKILL_TEMPLATE.xlsx(Sheet1): ROW 1]
+Found object mark: '#SKILL_TEMPLATE{{}}'
+Parsing Object Object Table...
+Using key index: 1
+
+Loading: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\STAGE_INFO.xlsx
+Parsing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\STAGE_INFO.xlsx.$$$\Sheet1.csv
+Closing: C:\Users\KITRIGAME\Documents\UnityProjects\RPG\Util\Excel2Json\STAGE_INFO.xlsx
+------------------------------------------------------------------------------
+[STAGE_INFO.xlsx(Sheet1): ROW 1]
+Found object mark: '#STAGE_INFO{{}}'
+Parsing Object Object Table...
+Using key index: 1
