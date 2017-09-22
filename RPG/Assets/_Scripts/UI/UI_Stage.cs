@@ -8,13 +8,21 @@ public class UI_Stage : BaseObject
 	GameObject IconPrefab;
 	UIGrid Grid;
 
+    UIButton CloseBtn;
+
 	private void Awake()
 	{
 		IconPrefab = 
 			Resources.Load("Prefabs/UI/Pf_UI_StageIcon") as GameObject;
 		Grid = GetComponentInChildren<UIGrid>();
 		AddIcon();
-	}
+
+        this.CloseBtn = GetChild("CloseBtn").GetComponent<UIButton>();
+        EventDelegate.Add(CloseBtn.onClick,
+            () => {
+                UI_Tools.Instance.HideUI(eUIType.Pf_UI_Stage);
+            });
+    }
 
 	void AddIcon()
 	{

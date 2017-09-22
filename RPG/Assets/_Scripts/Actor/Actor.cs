@@ -244,8 +244,11 @@ public class Actor : BaseObject
 
 	private void OnDisable()
 	{
-		if (BoardManager.Instance != null)
-			BoardManager.Instance.ShowBoard(this, false);
+        if (BoardManager.Instance != null)
+            if (GameManager.Instance.GAME_OVER == false)
+            {
+                BoardManager.Instance.ShowBoard(this, false);
+            }
 	}
 
 	public virtual void OnDestroy()

@@ -24,6 +24,4 @@ public class UI_Lobby : BaseObject
 	{
 		UI_Tools.Instance.ShowUI(eUIType.Pf_UI_Stage);
 	}
-
-
 }

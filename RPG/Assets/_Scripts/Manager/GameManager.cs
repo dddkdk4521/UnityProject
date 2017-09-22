@@ -29,8 +29,7 @@ public class GameManager : MonoSingleton<GameManager>
 
 		StageManager.Instance.StageInit();
 
-
-		IsInit = true;
+        IsInit = true;
 	}
 
 	public void LoadGame()
@@ -49,7 +48,17 @@ public class GameManager : MonoSingleton<GameManager>
 
 		// Camera Setting
 		CameraManager.Instance.CameraInit(PlayerActor);
-	}
+
+        UIManager.Instance.Init();
+        if (SelectStageInfo.CLEAR_TYPE == eClearType.CLEAR_TIME)
+        {
+            UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - StackTime);
+        }
+        else
+        {
+            UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - KillCount);
+        }
+    }
 
 	private void Update()
 	{
@@ -86,7 +95,9 @@ public class GameManager : MonoSingleton<GameManager>
 
 		KillCount++;
 
-		if (SelectStageInfo.CLEAR_FINISH <= KillCount)
+        UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - KillCount);
+
+        if (SelectStageInfo.CLEAR_FINISH <= KillCount)
 			SetGameOver();
 	}
 
