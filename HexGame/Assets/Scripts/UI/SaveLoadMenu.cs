@@ -128,6 +128,10 @@ public class SaveLoadMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// GameLoad 로직 !!!!
+    /// </summary>
+    /// <param name="path"></param>
     void Load(string path)
     {
         if (!File.Exists(path))

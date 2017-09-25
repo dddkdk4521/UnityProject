@@ -43,13 +43,14 @@ public struct HexCoordinates
             (z < other.z ? other.z - z : z - other.z)) / 2;
     }
 
-    // TODO : Util 계열의 클래스에 빼둘것
+    //////////////////////////////////////////////////////////////
+    /////////////////// Unitl Method /////////////////////////////
+    /// //////////////////////////////////////////////////////////
     public static HexCoordinates FromOffsetCoordinates(int x, int z)
     {
         return new HexCoordinates(x - z / 2, z);
     }
 
-    // TODO : Util 계열의 클래스에 빼둘것
     public static HexCoordinates FromPosition(Vector3 position)
     {
         float x = position.x / (HexMetrics.innerRadius * 2f);
@@ -81,22 +82,23 @@ public struct HexCoordinates
 
         return new HexCoordinates(iX, iZ);
     }
+    //////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////
     /////////////////// PrintStyle Method ////////////////////////
     /// //////////////////////////////////////////////////////////
     public override string ToString()
     {
-        return "(" +
-            X.ToString() + ", " + Y.ToString() + ", " + Z.ToString() + ")";
+        return "(" + X.ToString() + ", " + Y.ToString() + ", " + Z.ToString() + ")";
     }
+
     public string ToStringOnSeparateLines()
     {
         return X.ToString() + "\n" + Y.ToString() + "\n" + Z.ToString();
     }
     //////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////
-
 
     public void Save(BinaryWriter writer)
     {
@@ -107,8 +109,11 @@ public struct HexCoordinates
     public static HexCoordinates Load(BinaryReader reader)
     {
         HexCoordinates c;
-        c.x = reader.ReadInt32();
-        c.z = reader.ReadInt32();
+        {
+            c.x = reader.ReadInt32();
+            c.z = reader.ReadInt32();
+        }
+
         return c;
     }
 }

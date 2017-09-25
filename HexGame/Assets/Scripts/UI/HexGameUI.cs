@@ -26,6 +26,7 @@ public class HexGameUI : MonoBehaviour
 
     void Update()
     {
+        // PathFinding
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
@@ -44,6 +45,8 @@ public class HexGameUI : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     void DoSelection()

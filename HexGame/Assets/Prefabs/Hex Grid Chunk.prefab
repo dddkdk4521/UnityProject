@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000010320409676}
   - component: {fileID: 114000013279209982}
   m_Layer: 0
-  m_Name: Features
+  m_Name: Features_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 23000012062966806}
   - component: {fileID: 114000013599494320}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: Walls_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 23000012660199732}
   - component: {fileID: 114000013445900128}
   m_Layer: 0
-  m_Name: Water
+  m_Name: Water_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 23000011036063608}
   - component: {fileID: 114000012954278246}
   m_Layer: 0
-  m_Name: Rivers
+  m_Name: Rivers_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 23000014232703308}
   - component: {fileID: 114000013036081130}
   m_Layer: 0
-  m_Name: Estuaries
+  m_Name: Estuaries_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 23000014243412780}
   - component: {fileID: 114000010976435170}
   m_Layer: 0
-  m_Name: Water Shore
+  m_Name: Water Shore_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 23000011201693670}
   - component: {fileID: 114000011082573560}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Terrain_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 23000011040000518}
   - component: {fileID: 114000011881523884}
   m_Layer: 0
-  m_Name: Roads
+  m_Name: Roads_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
