@@ -1,0 +1,100 @@
+{
+	"ITEM_INFO": {
+		"1": {
+			"NAME": "검일",
+			"SLOT_TYPE": 0,
+			"MAX_HP": 0,
+			"ATTACK": 10,
+			"DEFFENCE": 0,
+			"IMAGE": "dagger"
+		},
+		"2": {
+			"NAME": "검이",
+			"SLOT_TYPE": 0,
+			"MAX_HP": 0,
+			"ATTACK": 20,
+			"DEFFENCE": 0,
+			"IMAGE": "greatsword"
+		},
+		"3": {
+			"NAME": "검삼",
+			"SLOT_TYPE": 0,
+			"MAX_HP": 0,
+			"ATTACK": 100,
+			"DEFFENCE": 10,
+			"IMAGE": "longsword"
+		},
+		"4": {
+			"NAME": "갑일",
+			"SLOT_TYPE": 1,
+			"MAX_HP": 10,
+			"ATTACK": 0,
+			"DEFFENCE": 30,
+			"IMAGE": "leather_armor"
+		},
+		"5": {
+			"NAME": "갑이",
+			"SLOT_TYPE": 1,
+			"MAX_HP": 20,
+			"ATTACK": 0,
+			"DEFFENCE": 40,
+			"IMAGE": "clothes"
+		},
+		"6": {
+			"NAME": "갑삼",
+			"SLOT_TYPE": 1,
+			"MAX_HP": 30,
+			"ATTACK": 0,
+			"DEFFENCE": 50,
+			"IMAGE": "steel_armor"
+		},
+		"7": {
+			"NAME": "방일",
+			"SLOT_TYPE": 2,
+			"MAX_HP": 0,
+			"ATTACK": 0,
+			"DEFFENCE": 5,
+			"IMAGE": "buckler"
+		},
+		"8": {
+			"NAME": "방이",
+			"SLOT_TYPE": 2,
+			"MAX_HP": 0,
+			"ATTACK": 0,
+			"DEFFENCE": 10,
+			"IMAGE": "buckler"
+		},
+		"9": {
+			"NAME": "방삼",
+			"SLOT_TYPE": 2,
+			"MAX_HP": 0,
+			"ATTACK": 0,
+			"DEFFENCE": 15,
+			"IMAGE": "shield"
+		},
+		"10": {
+			"NAME": "악일",
+			"SLOT_TYPE": 3,
+			"MAX_HP": 1,
+			"ATTACK": 1,
+			"DEFFENCE": 1,
+			"IMAGE": "greatstaff"
+		},
+		"11": {
+			"NAME": "악이",
+			"SLOT_TYPE": 3,
+			"MAX_HP": 2,
+			"ATTACK": 2,
+			"DEFFENCE": 2,
+			"IMAGE": "rod"
+		},
+		"12": {
+			"NAME": "악삼",
+			"SLOT_TYPE": 3,
+			"MAX_HP": 3,
+			"ATTACK": 3,
+			"DEFFENCE": 3,
+			"IMAGE": "staff"
+		}
+	}
+}

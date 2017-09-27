@@ -98,3 +98,13 @@ public enum eClearType
 	CLEAR_KILLCOUNT,
 	CLEAR_TIME,
 }
+
+public enum eSlotType
+{
+	Slot_None = -1,
+	Slot_Weapon = 0,
+	Slot_Armor,
+	Slot_Shield,
+	Slot_Acc,
+	Slot_Max,
+}

@@ -28,8 +28,8 @@ public class GameManager : MonoSingleton<GameManager>
 			return;
 
 		StageManager.Instance.StageInit();
-
-        IsInit = true;
+		ItemManager.Instance.ItemInit();
+		IsInit = true;
 	}
 
 	public void LoadGame()
@@ -46,19 +46,41 @@ public class GameManager : MonoSingleton<GameManager>
 		// Get actor
 		PlayerActor = ActorManager.Instance.PlayerLoad();
 
+		// Item
+		foreach(KeyValuePair<eSlotType, ItemInstance>pair in 
+			ItemManager.Instance.DIC_EQUIP)
+		{
+			StatusData status = pair.Value.ITEM_INFO.STATUS;
+			PlayerActor.SelfCharacter.GetCharacterStatus.AddStatusData
+				(pair.Key.ToString(), status);
+		}
+
+		PlayerActor.SelfCharacter.IncreaseCurrentHP(9999999999999999999);
+
+		BaseBoard hpBoard = BoardManager.Instance.GetBoardData(
+			PlayerActor, eBoardType.BOARD_HP);
+		if(hpBoard != null)
+		{
+			hpBoard.SetData(ConstValue.SetData_HP,
+				PlayerActor.GetStatusData(eStatusData.MAX_HP),
+				PlayerActor.SelfCharacter.CURRENT_HP
+				);
+		}
+		
+		if(SelectStageInfo.CLEAR_TYPE == eClearType.CLEAR_TIME)
+		{
+			UIManager.Instance.SetText(false,
+				(float)SelectStageInfo.CLEAR_FINISH - StackTime);
+		}
+		else
+		{
+			UIManager.Instance.SetText(true,
+				(float)SelectStageInfo.CLEAR_FINISH - KillCount);
+		}
+
 		// Camera Setting
 		CameraManager.Instance.CameraInit(PlayerActor);
-
-        UIManager.Instance.Init();
-        if (SelectStageInfo.CLEAR_TYPE == eClearType.CLEAR_TIME)
-        {
-            UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - StackTime);
-        }
-        else
-        {
-            UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - KillCount);
-        }
-    }
+	}
 
 	private void Update()
 	{
@@ -72,7 +94,10 @@ public class GameManager : MonoSingleton<GameManager>
 		{
 			StackTime += Time.deltaTime;
 
-			if( SelectStageInfo.CLEAR_FINISH < StackTime)
+			UIManager.Instance.SetText(false,
+				(float)SelectStageInfo.CLEAR_FINISH - StackTime);
+
+			if ( SelectStageInfo.CLEAR_FINISH < StackTime)
 			{
 				SetGameOver();
 			}
@@ -95,9 +120,10 @@ public class GameManager : MonoSingleton<GameManager>
 
 		KillCount++;
 
-        UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - KillCount);
+		UIManager.Instance.SetText(true,
+			(float)SelectStageInfo.CLEAR_FINISH - KillCount);
 
-        if (SelectStageInfo.CLEAR_FINISH <= KillCount)
+		if (SelectStageInfo.CLEAR_FINISH <= KillCount)
 			SetGameOver();
 	}
 
