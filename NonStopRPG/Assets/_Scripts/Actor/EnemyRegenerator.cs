@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EnemyRegenerator : BaseObject
 {
-	private GameObject MonsterPrefab = null;
-	List<Actor> listAttachMonster = new List<Actor>();
-
-	public eRegeneratorType RegenType = eRegeneratorType.NONE;
+    // Setting Property
+    public eRegeneratorType RegenType = eRegeneratorType.NONE;
 	public eEnemyType EnemyType = eEnemyType.A_Monster;
-
-	public int MaxObjectNum = 0;
-
     public eRegenerator RegenValue = eRegenerator.NONE;
+	public int MaxObjectNum = 0;
+	public float RegenTime = 300f;
+    //////////////////////
+
+	private GameObject MonsterPrefab = null;
+    static List<Actor> listAttachMonster = new List<Actor>();
 
 	// RegenTime Event
-	public float RegenTime = 300f;
 	private float CurrTime = 0f;
 
 	// Trigger Event
@@ -40,6 +40,34 @@ public class EnemyRegenerator : BaseObject
 		if(listAttachMonster.Contains(actor) == true)
 		{
 			listAttachMonster.Remove(actor);
+		}
+	}
+
+    public static bool IsMonsters()
+    {
+        //Debug.Log("Monster Count : " + listAttachMonster.Count);
+
+        return listAttachMonster.Count == 0 ? false : true;
+    }
+
+    void Update()
+	{
+		switch (RegenType)
+		{
+			case eRegeneratorType.REGENTIME_EVENT:
+				{
+					if (RegenTime > CurrTime)
+						CurrTime += Time.deltaTime;
+					else
+					{
+						CurrTime = 0;
+						RegenMonster();
+					}
+
+				}
+				break;
+			case eRegeneratorType.TRIGGER_EVENT:
+				break;
 		}
 	}
 
@@ -73,27 +101,6 @@ public class EnemyRegenerator : BaseObject
 		}
 	}
 
-	private void Update()
-	{
-		switch (RegenType)
-		{
-			case eRegeneratorType.REGENTIME_EVENT:
-				{
-					if (RegenTime > CurrTime)
-						CurrTime += Time.deltaTime;
-					else
-					{
-						CurrTime = 0;
-						RegenMonster();
-					}
-
-				}
-				break;
-			case eRegeneratorType.TRIGGER_EVENT:
-				break;
-		}
-	}
-
 	private void OnTriggerEnter(Collider other)
 	{
 		switch (RegenType)
@@ -117,7 +124,7 @@ public class EnemyRegenerator : BaseObject
 		}
 	}
 
-	void RegenMonster()
+	private void RegenMonster()
 	{
 		for (int i = listAttachMonster.Count;
 			 i < MaxObjectNum; i++)
@@ -140,7 +147,7 @@ public class EnemyRegenerator : BaseObject
 		}
 	}
 
-	Vector3 GetRandomPos()
+	private Vector3 GetRandomPos()
 	{
 		Vector3 dir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
 		return dir.normalized * Random.Range(1, Radius);

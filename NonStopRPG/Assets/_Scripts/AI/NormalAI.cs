@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class NormalAI : BaseAI
 {
-	protected override IEnumerator Idle()
-	{
-		// 탐지 범위
-		float distance = 0f;
-        //BaseObject targetObject = ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance);
-
-        BaseObject targetObject =
-                StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
+    private BaseObject TargetObjectSearch(out float distance)
+    {
+        BaseObject targetObject = null;
+        distance = 0;
 
         string TagName = this.TargetComponent.transform.tag.ToString();
         switch (TagName)
@@ -21,8 +17,7 @@ public class NormalAI : BaseAI
                     //targetObject = StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
 
                     targetObject =
-                       //EnemyRegenerator.IsActiveRegen ?
-                       StageManager.Instance.Is_ActiveRenerator() ?
+                        StageManager.Instance.FindRegenerator() ?
                              ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance)
                                 : StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
                 }
@@ -38,6 +33,20 @@ public class NormalAI : BaseAI
             default:
                 break;
         }
+
+        return targetObject;
+    }
+
+    protected override IEnumerator Idle()
+	{
+		// 탐지 범위
+		float distance = 0f;
+        //BaseObject targetObject = ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance);
+
+        BaseObject targetObject =
+                StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
+
+        targetObject = TargetObjectSearch(out distance);
 
         if (targetObject != null)
 		{
@@ -85,32 +94,7 @@ public class NormalAI : BaseAI
         BaseObject targetObject =
                 StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
 
-        string TagName = this.TargetComponent.transform.tag.ToString();
-        switch (TagName)
-        {
-            case "Player":
-                {
-                    //targetObject = StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
-
-                    targetObject =
-                        //EnemyRegenerator.IsActiveRegen ?
-                        StageManager.Instance.Is_ActiveRenerator() ?
-                         ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance)
-                            : StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
-                }
-                break;
-
-            case "Monster":
-                {
-                    targetObject =
-                        ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance);
-                }
-                break;
-
-            default:
-                break;
-        }
-
+        targetObject = TargetObjectSearch(out distance);
 
         if (targetObject != null)
 		{

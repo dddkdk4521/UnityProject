@@ -7,6 +7,7 @@ using System;
 public class StageManager : MonoSingleton<StageManager> 
 {
 	Dictionary<int, StageInfo> DicStageInfo = new Dictionary<int, StageInfo>();
+
     Generators generators;
     EnemyRegenerator currentRegenerator;
 
@@ -61,26 +62,43 @@ public class StageManager : MonoSingleton<StageManager>
         Vector3 myPosition = actor.SelfTransform.position;
 
         float nearDistance = radius;
-        currentRegenerator = null;
+        this.currentRegenerator = null;
 
-        for (int i = 0; i < generators.regeneratorPos.Length; i++)
+        for (int i = 0; i < this.generators.listEnemyRegenerator.Count; i++)
         {
-            float distance = Vector3.Distance(myPosition, generators.regeneratorPos[i].SelfTransform.position);
+            float distance = Vector3.Distance(myPosition, this.generators.listEnemyRegenerator[i].SelfTransform.position);
 
             if (distance < nearDistance)
             {
                 nearDistance = distance;
-                currentRegenerator = generators.regeneratorPos[i];
+                this.currentRegenerator = generators.listEnemyRegenerator[i];
             }
         }
         
         dist = nearDistance;
 
-        return currentRegenerator;
+        return this.currentRegenerator;
     }
 
-    public bool Is_ActiveRenerator()
+    public bool FindRegenerator()
     {
-        return currentRegenerator.ActiveRegen;
+        if (this.currentRegenerator.ActiveRegen)
+        {
+            // 몬스터 있을때
+            while (EnemyRegenerator.IsMonsters())
+            {
+                return true;
+            }
+
+            if (this.generators.listEnemyRegenerator.Contains(this.currentRegenerator))
+            {
+                this.generators.listEnemyRegenerator.Remove(this.currentRegenerator);
+            }
+            this.currentRegenerator.ActiveRegen = false;
+
+            return false;
+        }
+
+        return false;
     }
 }

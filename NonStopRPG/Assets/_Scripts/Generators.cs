@@ -5,5 +5,5 @@ using UnityEngine;
 public class Generators : MonoBehaviour
 {
     [SerializeField]
-    public EnemyRegenerator[] regeneratorPos;
+    public List<EnemyRegenerator> listEnemyRegenerator;
 }
