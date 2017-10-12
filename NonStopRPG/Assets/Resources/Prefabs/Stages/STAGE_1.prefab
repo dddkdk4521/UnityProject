@@ -1485,9 +1485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RegenType: 2
-  EnemyType: 0
+  EnemyType: 2
   RegenValue: 0
-  MaxObjectNum: 2
+  MaxObjectNum: 1
   RegenTime: 1
   Radius: 3
 --- !u!114 &114527689300881648
@@ -1513,9 +1513,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RegenType: 2
-  EnemyType: 0
+  EnemyType: 1
   RegenValue: 0
-  MaxObjectNum: 2
+  MaxObjectNum: 1
   RegenTime: 1
   Radius: 3
 --- !u!114 &114684155589928990
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   RegenType: 2
   EnemyType: 0
   RegenValue: 0
-  MaxObjectNum: 2
+  MaxObjectNum: 5
   RegenTime: 1
   Radius: 3
 --- !u!208 &208339656807324154

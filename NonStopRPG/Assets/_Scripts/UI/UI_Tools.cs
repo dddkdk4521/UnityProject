@@ -70,7 +70,6 @@ public class UI_Tools : MonoSingleton<UI_Tools>
 				}
 
 				DicUI.Add(uIType, baseObject);
-
 			}
 			else
 			{
@@ -141,13 +140,15 @@ public class UI_Tools : MonoSingleton<UI_Tools>
 		DicUI.Clear();
 	}
 
-
+    /// <summary>
+    /// 씬에 종속적이진 않는 UI 생성 ex) Loding Bar
+    /// </summary>
 	public void SubRootCreate()
 	{
 		// SubUIRoot 가 없다면 생성
 		if (SubUIRoot == null)
 		{
-			GameObject subRoot = new GameObject("Loding");
+			GameObject subRoot = new GameObject("Loading");
 			subRoot.transform.SetParent(this.transform);
 			SubUIRoot = subRoot;
 

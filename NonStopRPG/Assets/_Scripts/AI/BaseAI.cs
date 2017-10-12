@@ -13,19 +13,21 @@ public class NextAI
 public class BaseAI : BaseObject
 {
 	protected List<NextAI> ListNextAI = new List<NextAI>();
-	protected eAIStateType _CurrentAIState = eAIStateType.AI_STATE_IDLE;
+
+    protected eAIStateType _CurrentAIState = eAIStateType.AI_STATE_IDLE;
 	public eAIStateType CurrentAIState
 	{ get { return _CurrentAIState; } }
 
-	bool bUpdateAI = false;
-	bool bAttack = false;
+	private bool bUpdateAI = false;
+
+    private bool bAttack = false;
 	public bool IsAttack
 	{
 		get { return bAttack; }
 		set { bAttack = value; }
 	}
 
-	bool bEnd = false;
+	private bool bEnd = false;
 	public bool END
 	{
 		get { return bEnd; }
@@ -33,11 +35,10 @@ public class BaseAI : BaseObject
 	}
 
 	protected Vector3 MovePosition = Vector3.zero;
-	Vector3 PreMovePosition = Vector3.zero;
 
-	Animator Anim = null;
-	NavMeshAgent NavAgent = null;
+    private Vector3 PreMovePosition = Vector3.zero;
 
+	private Animator Anim = null;
 	public Animator ANIMATOR
 	{
 		get
@@ -50,6 +51,7 @@ public class BaseAI : BaseObject
 		}
 	}
 
+	private NavMeshAgent NavAgent = null;
 	public NavMeshAgent NAV_MESH_AGENT
 	{
 		get
@@ -61,7 +63,6 @@ public class BaseAI : BaseObject
 			return NavAgent;
 		}
 	}
-
 
 	void ChangeAnimation()
 	{
@@ -140,7 +141,6 @@ public class BaseAI : BaseObject
 		ChangeAnimation();
 	}
 
-
 	protected virtual IEnumerator Idle()
 	{
 		bUpdateAI = false;
@@ -165,7 +165,6 @@ public class BaseAI : BaseObject
 		yield break;
 	}
 
-
 	public virtual void AddNextAI(
 		eAIStateType nextStateType,
 		BaseObject targetObject = null,
@@ -181,14 +180,11 @@ public class BaseAI : BaseObject
 		ListNextAI.Add(nextAI);
 	}
 
-
 	void SetNextAI(NextAI nextAI)
 	{
 		if (nextAI.TargetObject != null)
 		{
-			TargetComponent.ThrowEvent(
-				ConstValue.ActorData_SetTarget,
-				nextAI.TargetObject);
+			TargetComponent.ThrowEvent(ConstValue.ActorData_SetTarget, nextAI.TargetObject);
 		}
 
 		if(nextAI.Position != Vector3.zero)
@@ -220,7 +216,6 @@ public class BaseAI : BaseObject
 				ProcessDie();
 				break;
 		}
-
 	}
 
 	public void UpdateAI()
@@ -260,7 +255,6 @@ public class BaseAI : BaseObject
 				StartCoroutine("Die");
 				break;
 		}
-
 	}
 
 	public void ClearAI()

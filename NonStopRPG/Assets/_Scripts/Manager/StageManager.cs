@@ -7,10 +7,6 @@ using System;
 public class StageManager : MonoSingleton<StageManager> 
 {
 	Dictionary<int, StageInfo> DicStageInfo = new Dictionary<int, StageInfo>();
-
-    Generators generators;
-    EnemyRegenerator currentRegenerator;
-
     public Dictionary<int, StageInfo> DIC_STAGEINFO
     {
         get
@@ -18,6 +14,9 @@ public class StageManager : MonoSingleton<StageManager>
             return DicStageInfo;
         }
     }
+
+    Generators generators;
+    EnemyRegenerator currentRegenerator;
 
 	public void StageInit()
 	{

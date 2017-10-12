@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class EnemyRegenerator : BaseObject
 {
-    // Setting Property
+
+    #region Setting Property
     public eRegeneratorType RegenType = eRegeneratorType.NONE;
 	public eEnemyType EnemyType = eEnemyType.A_Monster;
     public eRegenerator RegenValue = eRegenerator.NONE;
 	public int MaxObjectNum = 0;
 	public float RegenTime = 300f;
-    //////////////////////
+    #endregion
 
-	private GameObject MonsterPrefab = null;
+    private GameObject MonsterPrefab = null;
     static List<Actor> listAttachMonster = new List<Actor>();
 
-	// RegenTime Event
-	private float CurrTime = 0f;
+    // RegenTime Event
+    private float CurrTime = 0f;
 
 	// Trigger Event
 	public float Radius = 15f;
@@ -50,6 +51,7 @@ public class EnemyRegenerator : BaseObject
         return listAttachMonster.Count == 0 ? false : true;
     }
 
+    #region Unity
     void Update()
 	{
 		switch (RegenType)
@@ -123,8 +125,9 @@ public class EnemyRegenerator : BaseObject
 				break;
 		}
 	}
+    #endregion
 
-	private void RegenMonster()
+    private void RegenMonster()
 	{
 		for (int i = listAttachMonster.Count;
 			 i < MaxObjectNum; i++)

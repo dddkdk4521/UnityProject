@@ -8,39 +8,17 @@ public class ActorManager : MonoSingleton<ActorManager>
 	Transform ActorTransRoot = null;
 
 	// 모든 엑터 관리
-	Dictionary<eTeamType, List<Actor>> DicActor =
-					new Dictionary<eTeamType, List<Actor>>();
+	Dictionary<eTeamType, List<Actor>> DicActor = new Dictionary<eTeamType, List<Actor>>();
 
 	// 에너미 프리팹 관리
-	Dictionary<eEnemyType, GameObject> DicEnemyPrefab
-		= new Dictionary<eEnemyType, GameObject>();
+	Dictionary<eEnemyType, GameObject> DicEnemyPrefab = new Dictionary<eEnemyType, GameObject>();
 
-	private void Awake()
+    #region Unity
+    private void Awake()
 	{
 		EnemyPrefabLoad();
 	}
-
-	void EnemyPrefabLoad()
-	{
-		for(int i = 0; i < (int)eEnemyType.MAX; i++)
-		{
-			GameObject go = Resources.Load(
-				"Prefabs/Actor/" + ((eEnemyType)i).ToString("F"))
-				as GameObject;
-
-			if(go == null)
-			{
-				Debug.LogError(
-					((eEnemyType)i).ToString("F") +
-					"Load Failed.");
-				continue;
-			}
-			else
-			{
-				DicEnemyPrefab.Add((eEnemyType)i, go);
-			}
-		}
-	}
+    #endregion
 
 	public GameObject GetEnemyPrefab(eEnemyType type)
 	{
@@ -50,8 +28,8 @@ public class ActorManager : MonoSingleton<ActorManager>
 		}
 		else
 		{
-			Debug.LogError(type.ToString() +
-				" 타입의 적 프리팹이 없습니다.");
+			Debug.LogError(type.ToString() + " 타입의 적 프리팹이 없습니다.");
+
 			return null;
 		}		
 	}
@@ -68,7 +46,6 @@ public class ActorManager : MonoSingleton<ActorManager>
 
 		return go.GetComponent<Actor>();
 	}
-
 
 	public Actor InstantiateOnce(GameObject prefab, Vector3 pos)
 	{
@@ -91,9 +68,7 @@ public class ActorManager : MonoSingleton<ActorManager>
 		go.transform.SetParent(ActorTransRoot);
 
         return go.GetComponent<Actor>();
-
 	}
-
 
 	public void AddActor(Actor actor)
 	{
@@ -132,13 +107,9 @@ public class ActorManager : MonoSingleton<ActorManager>
 
 		if (bDelete)
 			Destroy(actor.SelfObject);
-
-
 	}
 
-
-	public BaseObject GetSearchEnemy(
-		BaseObject actor, float radius = 100.0f)
+	public BaseObject GetSearchEnemy(BaseObject actor, float radius = 100.0f)
 	{
 		eTeamType teamType =
 			(eTeamType)actor.GetData(ConstValue.ActorData_Team);
@@ -194,8 +165,7 @@ public class ActorManager : MonoSingleton<ActorManager>
 		return nearActor;
 	}
 
-	public BaseObject GetSearchEnemy(
-		BaseObject actor, out float dist,  float radius = 100.0f)
+	public BaseObject GetSearchEnemy(BaseObject actor, out float dist,  float radius = 100.0f)
 	{
 		eTeamType teamType =
 			(eTeamType)actor.GetData(ConstValue.ActorData_Team);
@@ -238,6 +208,25 @@ public class ActorManager : MonoSingleton<ActorManager>
 		return nearActor;
 	}
 
+    void EnemyPrefabLoad()
+	{
+		for(int i = 0; i < (int)eEnemyType.MAX; i++)
+		{
+			GameObject go = Resources.Load(
+				"Prefabs/Actor/" + ((eEnemyType)i).ToString("F"))
+				as GameObject;
 
-
+			if(go == null)
+			{
+				Debug.LogError(
+					((eEnemyType)i).ToString("F") +
+					"Load Failed.");
+				continue;
+			}
+			else
+			{
+				DicEnemyPrefab.Add((eEnemyType)i, go);
+			}
+		}
+	}
 }

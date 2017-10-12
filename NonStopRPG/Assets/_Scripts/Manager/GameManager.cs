@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-	bool IsInit = false;
 	public Actor PlayerActor;
+
+    public int SelectStage = 0;
 
 	bool IsGameOver = true;
 	public bool GAME_OVER { get { return IsGameOver; } }
 
-	public int SelectStage = 0;
-	StageInfo SelectStageInfo = null;
+    private StageInfo SelectStageInfo = null;
 
-	float StackTime = 0.0f;
-	int KillCount = 0;
+	private bool IsInit = false;
+	private float StackTime = 0.0f;
+	private int KillCount = 0;
 
 	//void Start ()
 	//{
@@ -22,7 +23,29 @@ public class GameManager : MonoSingleton<GameManager>
 	//	LoadGame();
 	//}
 
-	public void GameInit()
+	void Update()
+	{
+		if (IsGameOver == true)
+			return;
+
+		if (Scene_Manager.Instance.CURRENT_SCENE != eSceneType.Scene_Game)
+			return;
+
+		if(SelectStageInfo.CLEAR_TYPE == eClearType.CLEAR_TIME)
+		{
+			StackTime += Time.deltaTime;
+
+			UIManager.Instance.SetText(false,
+				(float)SelectStageInfo.CLEAR_FINISH - StackTime);
+
+			if ( SelectStageInfo.CLEAR_FINISH < StackTime)
+			{
+				SetGameOver();
+			}
+		}
+	}
+
+    public void GameInit()
 	{
 		if (IsInit == true)
 			return;
@@ -52,8 +75,7 @@ public class GameManager : MonoSingleton<GameManager>
 			ItemManager.Instance.DIC_EQUIP)
 		{
 			StatusData status = pair.Value.ITEM_INFO.STATUS;
-			PlayerActor.SelfCharacter.GetCharacterStatus.AddStatusData
-				(pair.Key.ToString(), status);
+			PlayerActor.SelfCharacter.GetCharacterStatus.AddStatusData(pair.Key.ToString(), status);
 		}
 
 		PlayerActor.SelfCharacter.IncreaseCurrentHP(9999999999999999999);
@@ -69,39 +91,15 @@ public class GameManager : MonoSingleton<GameManager>
 		
 		if(SelectStageInfo.CLEAR_TYPE == eClearType.CLEAR_TIME)
 		{
-			UIManager.Instance.SetText(false,
-				(float)SelectStageInfo.CLEAR_FINISH - StackTime);
+			UIManager.Instance.SetText(false, (float)SelectStageInfo.CLEAR_FINISH - StackTime);
 		}
 		else
 		{
-			UIManager.Instance.SetText(true,
-				(float)SelectStageInfo.CLEAR_FINISH - KillCount);
+			UIManager.Instance.SetText(true, (float)SelectStageInfo.CLEAR_FINISH - KillCount);
 		}
 
 		// Camera Setting
 		CameraManager.Instance.CameraInit(PlayerActor);
-	}
-
-	private void Update()
-	{
-		if (IsGameOver == true)
-			return;
-
-		if (Scene_Manager.Instance.CURRENT_SCENE != eSceneType.Scene_Game)
-			return;
-
-		if(SelectStageInfo.CLEAR_TYPE == eClearType.CLEAR_TIME)
-		{
-			StackTime += Time.deltaTime;
-
-			UIManager.Instance.SetText(false,
-				(float)SelectStageInfo.CLEAR_FINISH - StackTime);
-
-			if ( SelectStageInfo.CLEAR_FINISH < StackTime)
-			{
-				SetGameOver();
-			}
-		}
 	}
 
 	public void KillCheck(Actor dieActor)
@@ -120,13 +118,11 @@ public class GameManager : MonoSingleton<GameManager>
 
 		KillCount++;
 
-		UIManager.Instance.SetText(true,
-			(float)SelectStageInfo.CLEAR_FINISH - KillCount);
+		UIManager.Instance.SetText(true, (float)SelectStageInfo.CLEAR_FINISH - KillCount);
 
 		if (SelectStageInfo.CLEAR_FINISH <= KillCount)
 			SetGameOver();
 	}
-
 
 	public void SetGameOver()
 	{
@@ -138,7 +134,7 @@ public class GameManager : MonoSingleton<GameManager>
         Invoke("GoLobby", 0.5f);
 	}
 
-	void GoLobby()
+	private void GoLobby()
 	{
 		Time.timeScale = 1f;
 		Scene_Manager.Instance.LoadScene(eSceneType.Scene_Lobby);

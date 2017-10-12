@@ -6,24 +6,39 @@ public class GameCharacter
 {
 	public BaseObject TargetComponenet = null;
 
-	CharacterTemplateData TemplateData = null;
-	CharacterStatusData CharacterStatus = new CharacterStatusData();
-
+	private CharacterTemplateData TemplateData = null;
 	public CharacterTemplateData GetCharacterTemplate
-	{ get { return TemplateData; } }
+	{
+        get
+        {
+            return TemplateData;
+        }
+    }
+
+    private CharacterStatusData CharacterStatus = new CharacterStatusData();
 	public CharacterStatusData GetCharacterStatus
-	{ get { return CharacterStatus; } }
+	{
+        get
+        {
+            return CharacterStatus;
+        }
+    }
 
 	double CurrentHP = 0;
 	public double CURRENT_HP
-	{ get { return CurrentHP; } }
+	{
+        get
+        {
+            return CurrentHP;
+        }
+    }
 
 	public SkillData SELECT_SKILL
 	{
 		get;
 		set;
 	}
-	List<SkillData> ListSkill = new List<SkillData>();
+	private List<SkillData> ListSkill = new List<SkillData>();
 	
 	public void IncreaseCurrentHP(double valueData)
 	{
@@ -39,20 +54,15 @@ public class GameCharacter
 
 		if (CurrentHP == 0)
 		{
-			TargetComponenet.ObjectState =
-				eBaseObjectState.STATE_DIE;
+			TargetComponenet.ObjectState = eBaseObjectState.STATE_DIE;
 		}
 	}
 
 	public void SetTemplate(CharacterTemplateData _templateData)
 	{
-		TemplateData = _templateData;
-		CharacterStatus.AddStatusData(
-			ConstValue.CharacterStatusDataKey,
-			TemplateData.STATUS);
-		CurrentHP =
-			CharacterStatus.GetStatusData(eStatusData.MAX_HP);
-
+		this.TemplateData = _templateData;
+		this.CharacterStatus.AddStatusData(ConstValue.CharacterStatusDataKey, TemplateData.STATUS);
+		this.CurrentHP = CharacterStatus.GetStatusData(eStatusData.MAX_HP);
 
 		// Skill Setting
 		for (int i = 0; i < TemplateData.LIST_SKILL.Count; i++)

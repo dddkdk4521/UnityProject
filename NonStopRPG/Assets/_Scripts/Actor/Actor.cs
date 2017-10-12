@@ -25,8 +25,6 @@ public class Actor : BaseObject
 	public GameCharacter SelfCharacter
 	{ get { return _SelfCharacter; } }
 
-
-
 	// AI
 	[SerializeField]
 	eAIType _AIType;
@@ -37,15 +35,19 @@ public class Actor : BaseObject
 
 	BaseAI _AI = null;
 	public BaseAI AI
-	{ get { return _AI; }	}
-
+    {
+        get
+        {
+            return _AI;
+        }
+    }
 
 	[SerializeField]
 	bool bEnableBoard = true;
+	BaseObject HitTarget;   // 공격대상
 
-	BaseObject HitTarget;	// 공격대상
-
-	private void Awake()
+    #region Unity 
+    private void Awake()
 	{
 		switch (AIType)
 		{
@@ -90,7 +92,32 @@ public class Actor : BaseObject
 			Destroy(SelfObject);
 	}
 
-	public double GetStatusData(eStatusData statusData)
+    private void OnEnable()
+    {
+        if (BoardManager.Instance != null)
+            BoardManager.Instance.ShowBoard(this, true);
+    }
+
+    private void OnDisable()
+    {
+        if (BoardManager.Instance != null)
+            if (GameManager.Instance.GAME_OVER == false)
+                BoardManager.Instance.ShowBoard(this, false);
+    }
+
+    public virtual void OnDestroy()
+    {
+        if (BoardManager.Instance != null)
+            BoardManager.Instance.ClearBoard(this);
+
+        // ActorManager RemoveActor
+        if (ActorManager.Instance != null)
+            ActorManager.Instance.RemoveActor(this);
+    }
+
+    #endregion
+
+    public double GetStatusData(eStatusData statusData)
 	{
 		return SelfCharacter.
 			GetCharacterStatus.GetStatusData(statusData);
@@ -141,16 +168,14 @@ public class Actor : BaseObject
 					GameCharacter casterCharacter = datas[0] as GameCharacter;
 					SkillTemplate skilltemplate = datas[1] as SkillTemplate;
 
-					casterCharacter.GetCharacterStatus.AddStatusData(
-						"SKILL", skilltemplate.STATUS_DATA);
+					casterCharacter.GetCharacterStatus.AddStatusData("SKILL", skilltemplate.STATUS_DATA);
 
 					double attackDamage =
 						casterCharacter.
 						GetCharacterStatus.
 						GetStatusData(eStatusData.ATTACK);
 
-					casterCharacter.GetCharacterStatus.RemoveStatusData(
-						"SKILL");
+					casterCharacter.GetCharacterStatus.RemoveStatusData("SKILL");
 
 					SelfCharacter.IncreaseCurrentHP(-attackDamage);
 
@@ -163,13 +188,10 @@ public class Actor : BaseObject
 						board.SetData(ConstValue.SetData_Damage, attackDamage);
 
 					// HpBoard
-					board = BoardManager.Instance.GetBoardData(
-						this, eBoardType.BOARD_HP);
+					board = BoardManager.Instance.GetBoardData(this, eBoardType.BOARD_HP);
 					if(board != null)
 					{
-						board.SetData(ConstValue.SetData_HP,
-								GetStatusData(eStatusData.MAX_HP),
-								SelfCharacter.CURRENT_HP);
+						board.SetData(ConstValue.SetData_HP, GetStatusData(eStatusData.MAX_HP), SelfCharacter.CURRENT_HP);
 					}
 
                     if (IsPlayer == true)
@@ -233,29 +255,6 @@ public class Actor : BaseObject
 		//	" 공격력으로 때림.");
 
 		//HitTarget.ThrowEvent(ConstValue.EventKey_Hit);
-	}
-
-	private void OnEnable()
-	{
-		if (BoardManager.Instance != null)
-			BoardManager.Instance.ShowBoard(this, true);
-	}
-
-	private void OnDisable()
-	{
-		if (BoardManager.Instance != null)
-			if (GameManager.Instance.GAME_OVER == false)
-				BoardManager.Instance.ShowBoard(this, false);
-	}
-
-	public virtual void OnDestroy()
-	{
-		if (BoardManager.Instance != null)
-			BoardManager.Instance.ClearBoard(this);
-
-		// ActorManager RemoveActor
-		if(ActorManager.Instance != null)
-			ActorManager.Instance.RemoveActor(this);
 	}
 
 	//Animator Anim;

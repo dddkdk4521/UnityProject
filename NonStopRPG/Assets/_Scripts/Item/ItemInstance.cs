@@ -22,11 +22,10 @@ public class ItemInstance
 
 	public ItemInstance(int no, eSlotType equipType, ItemInfo info)
 	{
-		ItemNO = no;
-		ItemID = int.Parse(info.KEY);
+		this.ItemNO = no;
+		this.ItemID = int.Parse(info.KEY);
 
-		EquipSlotType = equipType;
-		Info = info;
+		this.EquipSlotType = equipType;
+		this.Info = info;
 	}
-						
 }

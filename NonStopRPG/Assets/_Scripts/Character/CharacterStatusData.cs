@@ -4,48 +4,46 @@ using UnityEngine;
 
 public class CharacterStatusData
 {
-	Dictionary<string, StatusData> DicStatus
-		 = new Dictionary<string, StatusData>();
+	private Dictionary<string, StatusData> DicStatus= new Dictionary<string, StatusData>();
 
-	bool bRefresh = false;
-	StatusData TotalStatus = new StatusData();
+	private bool bRefresh = false;
+	private StatusData TotalStatus = new StatusData();
 
-	public void AddStatusData(
-		string strKey, StatusData statusData)
+	public void AddStatusData(string strKey, StatusData statusData)
 	{
-		DicStatus.Remove(strKey);
-		DicStatus.Add(strKey, statusData);
-		bRefresh = true;
+		this.DicStatus.Remove(strKey);
+		this.DicStatus.Add(strKey, statusData);
+
+        this.bRefresh = true;
 	}
 
 	public void RemoveStatusData(string strKey)
 	{
-		DicStatus.Remove(strKey);
-		bRefresh = true;
+		this.DicStatus.Remove(strKey);
+
+        bRefresh = true;
 	}
 
 	public double GetStatusData(eStatusData statusData)
 	{
-		RefreshTotalStatus();
-		return TotalStatus.GetStatusData(statusData);
+		this.RefreshTotalStatus();
+
+        return this.TotalStatus.GetStatusData(statusData);
 	}
 
 	void RefreshTotalStatus()
 	{
-		if (bRefresh == false)
+		if (this.bRefresh == false)
 			return;
 
-		TotalStatus.InitData();
+		this.TotalStatus.InitData();
 
-		foreach (KeyValuePair<string,StatusData> pair 
-			in DicStatus)
+		foreach (KeyValuePair<string,StatusData> pair in DicStatus)
 		{
 			StatusData data = pair.Value;
-			TotalStatus.AddCopy(data);
+			this.TotalStatus.AddCopy(data);
 		}
 
-		bRefresh = false;
+		this.bRefresh = false;
 	}
-
-
 }

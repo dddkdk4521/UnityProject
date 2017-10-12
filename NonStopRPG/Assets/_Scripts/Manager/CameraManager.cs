@@ -29,24 +29,19 @@ public class CameraManager : MonoSingleton<CameraManager>
 			return;
 
 		float wantedHeight = Target.position.y + Height;
-		float currentHeight = CameraRoot.transform.position.y;
-
 		float wantedWidth = Target.position.x;
-		float currentWidht = CameraRoot.transform.position.x;
 
-		currentHeight = Mathf.Lerp(
-			currentHeight, wantedHeight, 
-			HeightDamping * Time.deltaTime);
+        float currentHeight = CameraRoot.transform.position.y;
+		float currentWidth = CameraRoot.transform.position.x;
 
-		currentWidht = Mathf.Lerp(
-			currentWidht, wantedWidth,
-			WidthDamping * Time.deltaTime);
+		currentHeight = Mathf.Lerp(currentHeight, wantedHeight, HeightDamping * Time.deltaTime);
+
+		currentWidth = Mathf.Lerp(currentWidth, wantedWidth, WidthDamping * Time.deltaTime);
 
 		Vector3 pos = Target.position;
 		pos -= CameraRoot.transform.forward * Distance;
 
-		CameraRoot.transform.position
-			= new Vector3(currentWidht, currentHeight, pos.z);
+		CameraRoot.transform.position = new Vector3(currentWidth, currentHeight, pos.z);
 
 		CameraRoot.transform.LookAt(Target);
 	}
@@ -65,14 +60,15 @@ public class CameraManager : MonoSingleton<CameraManager>
             deltaTime += Time.deltaTime;
 
             Vector3 pos = Vector3.zero;
-            pos.x = Random.Range(-shakeSense, shakeSense);
-            pos.y = Random.Range(-shakeSense, shakeSense);
-            pos.z = Random.Range(-shakeSense, shakeSense);
+            {
+                pos.x = Random.Range(-shakeSense, shakeSense);
+                pos.y = Random.Range(-shakeSense, shakeSense);
+                pos.z = Random.Range(-shakeSense, shakeSense);
+            }
 
             MainCamera.transform.localPosition = pos;
 
             yield return new WaitForEndOfFrame();
         }
     }
-
 }

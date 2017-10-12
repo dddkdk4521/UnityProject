@@ -31,7 +31,7 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
 
 			UI_Tools.Instance.SubRootCreate();
 
-			//UI_Tools.Instance.ShowLoadingUI(Operation.progress);
+			UI_Tools.Instance.ShowLoadingUI(Operation.progress);
 			if (Operation.isDone == true)
 			
 			//UI_Tools.Instance.ShowLoadingUI(StackTime / 2f);
@@ -42,7 +42,7 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
 
 				Operation = null;
 				NextState = eSceneType.Scene_None;
-				//UI_Tools.Instance.HideUI(eUIType.Pf_UI_Loading, true);
+				UI_Tools.Instance.HideUI(eUIType.Pf_UI_Loading, true);
 			}
 			else
 				return;
@@ -64,7 +64,7 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
 					SceneManager.LoadSceneAsync(NextState.ToString());
 				StackTime = 0.0f;
 				// 로딩바 생성
-				//UI_Tools.Instance.ShowLoadingUI(0.0f);				
+				UI_Tools.Instance.ShowLoadingUI(0.0f);				
 			}
 			else
 			{

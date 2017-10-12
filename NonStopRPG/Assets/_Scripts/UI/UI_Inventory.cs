@@ -17,7 +17,7 @@ public class UI_Inventory : BaseObject
 
 	public override void ThrowEvent(string keyData, params object[] datas)
 	{
-		if(keyData.Equals("Inven_Init") == true)
+        if (keyData.Equals("Inven_Init") == true)
 		{
 			Init();
 			Reset();
@@ -26,33 +26,29 @@ public class UI_Inventory : BaseObject
 
 	public void Init()
 	{
-		if (IsInit == true)
+		if (this.IsInit == true)
 			return;
-		IsInit = true;
 
-		ItemPrefab = 
-			Resources.Load("Prefabs/UI/Pf_UI_Item") as GameObject;
-		Grid = GetComponentInChildren<UIGrid>();
+        this.IsInit = true;
+
+		this.ItemPrefab = Resources.Load("Prefabs/UI/Pf_UI_Item") as GameObject;
+		this.Grid = GetComponentInChildren<UIGrid>();
 
 		// Close Btn
-		CloseBtn = GetChild("CloseBtn").GetComponent<UIButton>();
+		this.CloseBtn = GetChild("CloseBtn").GetComponent<UIButton>();
 		EventDelegate.Add(
 			CloseBtn.onClick,
 			new EventDelegate(
 				()=> { UI_Tools.Instance.HideUI(eUIType.Pf_UI_Inventory); }
-				)
-				);
+				));
 
-
-		WeaponLabel = GetChild("Weapon").GetComponent<UILabel>();
-		ArmorLabel = GetChild("Armor").GetComponent<UILabel>();
-		ShieldLabel = GetChild("Shield").GetComponent<UILabel>();
-		AccLabel = GetChild("Acc").GetComponent<UILabel>();
-				
+		this.WeaponLabel = GetChild("Weapon").GetComponent<UILabel>();
+		this.ArmorLabel = GetChild("Armor").GetComponent<UILabel>();
+		this.ShieldLabel = GetChild("Shield").GetComponent<UILabel>();
+		this.AccLabel = GetChild("Acc").GetComponent<UILabel>();
 
 		EquipItemReset();
 		ItemManager.Instance.EquipE = EquipItemReset;
-
 	}
 
 	public void Reset()
@@ -61,7 +57,8 @@ public class UI_Inventory : BaseObject
 		{
 			Destroy(Grid.transform.GetChild(i).gameObject);
 		}
-		AddItem();
+
+        AddItem();
 	}
 
 	void AddItem()
@@ -70,8 +67,10 @@ public class UI_Inventory : BaseObject
 		for(int i = 0; i<list.Count; i++)
 		{
 			GameObject go = Instantiate(ItemPrefab, Grid.transform);
-			go.transform.localScale = Vector3.one;
-			go.GetComponent<UI_Item>().Init(list[i]);
+            {
+                go.transform.localScale = Vector3.one;
+			    go.GetComponent<UI_Item>().Init(list[i]);
+            }
 		}
 
 		Grid.repositionNow = true;
@@ -79,11 +78,9 @@ public class UI_Inventory : BaseObject
 
 	public void EquipItemReset()
 	{
-		Dictionary<eSlotType, ItemInstance> dic =
-			ItemManager.Instance.DIC_EQUIP;
+		Dictionary<eSlotType, ItemInstance> dic = ItemManager.Instance.DIC_EQUIP;
 
-		foreach(KeyValuePair<eSlotType, ItemInstance> pair 
-			in dic)
+		foreach(KeyValuePair<eSlotType, ItemInstance> pair in dic)
 		{
 			switch (pair.Key)
 			{
@@ -105,8 +102,5 @@ public class UI_Inventory : BaseObject
 					break;
 			}
 		}
-
-
 	}
-
 }

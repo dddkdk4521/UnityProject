@@ -18,16 +18,14 @@ public class ItemManager : MonoSingleton<ItemManager>
 	}
 
 	// 장착 슬롯
-	Dictionary<eSlotType, ItemInstance> DicEquipItem =
-		new Dictionary<eSlotType, ItemInstance>();
+	Dictionary<eSlotType, ItemInstance> DicEquipItem = new Dictionary<eSlotType, ItemInstance>();
 	public Dictionary<eSlotType,ItemInstance> DIC_EQUIP
 	{
 		get { return DicEquipItem; }
 	}
 
 	// 아이템 원본 데이터
-	Dictionary<int, ItemInfo> DicItemInfo =
-		new Dictionary<int, ItemInfo>();
+	Dictionary<int, ItemInfo> DicItemInfo = new Dictionary<int, ItemInfo>();
 	public Dictionary<int, ItemInfo> DIC_ITEMINFO
 	{
 		get { return DicItemInfo; }
@@ -65,8 +63,7 @@ public class ItemManager : MonoSingleton<ItemManager>
 			Debug.LogError(id + " is not Valid Key");
 			return;
 		}
-		ItemInstance instance = new ItemInstance(
-			listItem.Count + 1, eSlotType.Slot_None, info);
+		ItemInstance instance = new ItemInstance(listItem.Count + 1, eSlotType.Slot_None, info);
 		listItem.Add(instance);
 
 		SetLocalData();
@@ -76,7 +73,6 @@ public class ItemManager : MonoSingleton<ItemManager>
 		BaseObject ui = UI_Tools.Instance.ShowUI(eUIType.Pf_UI_Gacha);
 		ui.ThrowEvent("GACHA", instance);
 	}
-
 
 	public void GetLocalData()
 	{
@@ -154,9 +150,9 @@ public class ItemManager : MonoSingleton<ItemManager>
 		}
 
 		PlayerPrefs.SetString(ConstValue.LocalSave_ItemInstance, resultStr);
-		Debug.Log(resultStr);
+
+        Debug.Log(resultStr);
 	}
-		 
 
 	public void EquipItem(ItemInstance instance, bool isSave = true)
 	{

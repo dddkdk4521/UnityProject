@@ -6,7 +6,8 @@ public class NormalAI : BaseAI
 {
     private BaseObject TargetObjectSearch(out float distance)
     {
-        BaseObject targetObject = null;
+        BaseObject targetObject =
+                StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
         distance = 0;
 
         string TagName = this.TargetComponent.transform.tag.ToString();
@@ -37,16 +38,14 @@ public class NormalAI : BaseAI
         return targetObject;
     }
 
+    #region AI Method
     protected override IEnumerator Idle()
 	{
 		// 탐지 범위
 		float distance = 0f;
         //BaseObject targetObject = ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance);
 
-        BaseObject targetObject =
-                StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
-
-        targetObject = TargetObjectSearch(out distance);
+        BaseObject targetObject = TargetObjectSearch(out distance);
 
         if (targetObject != null)
 		{
@@ -89,12 +88,8 @@ public class NormalAI : BaseAI
 	{
 		// 탐지 범위
 		float distance = 0f;
-        //BaseObject targetObject = ActorManager.Instance.GetSearchEnemy(TargetComponent, out distance);
 
-        BaseObject targetObject =
-                StageManager.Instance.GetSearchRegenerator(TargetComponent, out distance);
-
-        targetObject = TargetObjectSearch(out distance);
+        BaseObject targetObject = TargetObjectSearch(out distance);
 
         if (targetObject != null)
 		{
@@ -143,12 +138,11 @@ public class NormalAI : BaseAI
 
 	}
 
-
 	protected override IEnumerator Die()
 	{
 		END = true;
 
 		yield return StartCoroutine(base.Die());
 	}
-
+    #endregion
 }
