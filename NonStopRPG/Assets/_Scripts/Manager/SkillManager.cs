@@ -194,10 +194,10 @@ public class SkillManager : MonoSingleton<SkillManager>
 		if (rootNode == null)
 			return;
 
-		JSONObject skillDataNode = 
+        JSONObject skillDataNode = 
 			rootNode[ConstValue.SkillDataKey] as JSONObject;
 
-		foreach(KeyValuePair<string ,JSONNode> pair in skillDataNode)
+        foreach (KeyValuePair<string, JSONNode> pair in skillDataNode)
 		{
 			SkillData skillData = new SkillData(pair.Key, pair.Value);
 			DicSkillData.Add(pair.Key, skillData);
@@ -219,8 +219,8 @@ public class SkillManager : MonoSingleton<SkillManager>
 		if (rootNode == null)
 			return;
 
-		JSONObject skillDataNode =
-			rootNode[ConstValue.SkillTemplateKey] as JSONObject;
+        SimpleJSON.JSONObject skillDataNode =
+			rootNode[ConstValue.SkillTemplateKey] as SimpleJSON.JSONObject;
 
 		foreach (KeyValuePair<string, JSONNode> pair in skillDataNode)
 		{

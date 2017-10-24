@@ -43,7 +43,7 @@ public class ItemManager : MonoSingleton<ItemManager>
 		JSONNode rootNode = JSON.Parse(itemInfo.text);
 
 		foreach(KeyValuePair<string, JSONNode> pair
-			in rootNode["ITEM_INFO"] as JSONObject)
+			in rootNode["ITEM_INFO"] as SimpleJSON.JSONObject)
 		{
 			ItemInfo info = new ItemInfo(pair.Key, pair.Value);
 			DicItemInfo.Add(int.Parse(pair.Key), info);

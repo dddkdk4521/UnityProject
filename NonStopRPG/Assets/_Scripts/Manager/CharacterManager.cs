@@ -15,17 +15,13 @@ public class CharacterManager : MonoSingleton<CharacterManager>
 
 		if(characterText != null)
 		{
-			JSONObject rootNodeText =
-				JSON.Parse(characterText.text) as JSONObject;
+			JSONObject rootNodeText = JSON.Parse(characterText.text) as JSONObject;
 
 			if(rootNodeText != null)
 			{
-				JSONObject characterTemplateNode =
-					rootNodeText[ConstValue.CharacterTemplateKey]
-					as JSONObject;
+                JSONObject characterTemplateNode = rootNodeText[ConstValue.CharacterTemplateKey] as JSONObject;
 
-				foreach(KeyValuePair<string, JSONNode> templateNode
-					in characterTemplateNode)
+                foreach (KeyValuePair<string, JSONNode> templateNode in characterTemplateNode)
 				{
 					DicTemplate.Add(
 						templateNode.Key,

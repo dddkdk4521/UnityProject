@@ -16,11 +16,11 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
 
 	public void LoadScene(eSceneType type, bool isAsyc = true)
 	{
-		if (CurrentState == type)
+		if (this.CurrentState == type)
 			return;
 
-		NextState = type;
-		IsAsyc = isAsyc;
+		this.NextState = type;
+		this.IsAsyc = isAsyc;
 	}
 
 	private void Update()
@@ -71,8 +71,8 @@ public class Scene_Manager : MonoSingleton<Scene_Manager>
 				// 동기
 				SceneManager.LoadScene(NextState.ToString());
 
-                CurrentState = NextState;
-				NextState = eSceneType.Scene_None;
+                this.CurrentState = this.NextState;
+				this.NextState = eSceneType.Scene_None;
 				ComplateLoad(CurrentState);
 			}
 		}
